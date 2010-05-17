@@ -1,4 +1,6 @@
-﻿namespace MvcHelper
+﻿using MvcAjaxToolkit.Attributes;
+
+namespace MvcAjaxToolkit.Flexigrid
 {
     /// <summary>
     /// 排序方式

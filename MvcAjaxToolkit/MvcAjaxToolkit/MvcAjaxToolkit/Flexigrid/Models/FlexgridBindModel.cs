@@ -1,4 +1,4 @@
-﻿namespace MvcHelper
+﻿namespace MvcAjaxToolkit.Flexigrid.Models
 {
     public class FlexgridBindModel
     {

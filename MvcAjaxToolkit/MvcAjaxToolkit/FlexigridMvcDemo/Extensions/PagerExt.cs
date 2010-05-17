@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MvcHelper
+namespace MvcAjaxToolkit
 {
     public static class PagerExt
     {

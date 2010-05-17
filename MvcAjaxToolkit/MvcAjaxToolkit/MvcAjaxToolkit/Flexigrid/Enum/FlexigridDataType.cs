@@ -1,4 +1,6 @@
-﻿namespace MvcHelper
+﻿using MvcAjaxToolkit.Attributes;
+
+namespace MvcAjaxToolkit.Flexigrid
 {
     /// <summary>
     /// 数据传输方式

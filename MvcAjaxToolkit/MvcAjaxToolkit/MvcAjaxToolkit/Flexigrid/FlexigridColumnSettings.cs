@@ -1,4 +1,6 @@
-﻿namespace MvcHelper
+﻿using MvcAjaxToolkit;
+
+namespace MvcAjaxToolkit.Flexigrid
 {
     public class ColumnSettings
     {

@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 using FlexigridMvcDemo.Models;
-using MvcHelper;
+using MvcAjaxToolkit;
 
 namespace FlexigridMvcDemo.Controllers
 {

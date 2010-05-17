@@ -1,4 +1,6 @@
-﻿namespace MvcHelper
+﻿using MvcAjaxToolkit.Attributes;
+
+namespace MvcAjaxToolkit.Flexigrid
 {
     /// <summary>
     /// 对齐方式

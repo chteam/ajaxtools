@@ -1,10 +1,12 @@
 ﻿using System.IO;
 using System.Text;
 using System.Web.UI;
+using MvcAjaxToolkit.Interface;
+using MvcAjaxToolkit;
 
-namespace MvcHelper
+namespace MvcAjaxToolkit.Flexigrid
 {
-    public class FlexigridRenderer<T> : IGridRenderer<TableSettings<T>> where T : class
+    public class FlexigridRender<T> : IGridRender<TableSettings<T>> where T : class
     {
 
         private static int _gridIndex;
@@ -57,7 +59,7 @@ namespace MvcHelper
             int count = 0;
             int totalCount = data.GridColumns.Count;
             //生成列
-            foreach (FlexigridColumn<T> column in data.GridColumns)
+            foreach (Column<T> column in data.GridColumns)
             {
                 count++;
                 sb.Append("{");

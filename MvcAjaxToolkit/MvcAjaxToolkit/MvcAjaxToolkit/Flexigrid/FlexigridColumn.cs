@@ -1,8 +1,10 @@
-﻿namespace MvcHelper
+﻿using MvcAjaxToolkit.Flexigrid;
+
+namespace MvcAjaxToolkit
 {
-    public class FlexigridColumn<T>
+    public class Column<T>
     {
-        public FlexigridColumn(string fieldName)
+        public Column(string fieldName)
         {
             this.ColumnSettings = new ColumnSettings();
             this.FieldName = fieldName;

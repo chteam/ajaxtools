@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
 using System.Data;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using MvcHelper;
+using MvcAjaxToolkit;
 using FlexigridMvcDemo.Models;
 using System.Linq;
 namespace FlexigridDemoTest

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MvcHelper
+namespace MvcAjaxToolkit.Attributes
 {
     internal class DescriptionAttribute : Attribute
     {

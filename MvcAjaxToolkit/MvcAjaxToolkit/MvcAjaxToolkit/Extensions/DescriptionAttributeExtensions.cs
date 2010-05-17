@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Reflection;
+using MvcAjaxToolkit.Attributes;
 
-namespace MvcHelper
+namespace MvcAjaxToolkit
 {
     public static class DescriptionAttributeExtensions
     {

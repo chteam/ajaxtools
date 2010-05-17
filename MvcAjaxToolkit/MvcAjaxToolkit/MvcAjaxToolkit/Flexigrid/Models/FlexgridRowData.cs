@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MvcHelper
+namespace MvcAjaxToolkit.Flexigrid.Models
 {
     public class FlexgridRowData
     {

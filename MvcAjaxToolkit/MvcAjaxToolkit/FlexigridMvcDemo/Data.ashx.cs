@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MvcHelper;
+using MvcAjaxToolkit;
 using FlexigridMvcDemo.Models;
 
 namespace FlexigridMvcDemo{

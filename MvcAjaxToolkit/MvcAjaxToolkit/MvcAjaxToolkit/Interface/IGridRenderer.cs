@@ -1,6 +1,6 @@
-﻿namespace MvcHelper
+﻿namespace MvcAjaxToolkit.Interface
 {
-    public interface IGridRenderer<T> where T : class
+    public interface IGridRender<T> where T : class
     {
         string Render(T data);
     }

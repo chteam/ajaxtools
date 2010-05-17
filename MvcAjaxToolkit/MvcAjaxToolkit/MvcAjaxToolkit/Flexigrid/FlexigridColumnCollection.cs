@@ -2,14 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using MvcAjaxToolkit.Flexigrid;
 
-namespace MvcHelper
+namespace MvcAjaxToolkit
 {
-    public class ColumnCollection<T> : ICollection<FlexigridColumn<T>> where T : class
+    public class ColumnCollection<T> : ICollection<Column<T>> where T : class
     {
         #region Private fields
 
-        private readonly IList<FlexigridColumn<T>> _columns = new List<FlexigridColumn<T>>();
+        private readonly IList<Column<T>> _columns = new List<Column<T>>();
 
         #endregion
 
@@ -55,7 +56,7 @@ namespace MvcHelper
 
         public ColumnSettings Bind(string bindField)
         {
-            var column = new FlexigridColumn<T>(bindField);
+            var column = new Column<T>(bindField);
             _columns.Add(column);
             return column.ColumnSettings;
         }
@@ -64,7 +65,7 @@ namespace MvcHelper
 
         #region Implementation of IEnumerable
 
-        public IEnumerator<FlexigridColumn<T>> GetEnumerator()
+        public IEnumerator<Column<T>> GetEnumerator()
         {
             return _columns.GetEnumerator();
         }
@@ -78,7 +79,7 @@ namespace MvcHelper
 
         #region Implementation of ICollection<FlexiGridColumn<T>>
 
-        public void Add(FlexigridColumn<T> item)
+        public void Add(Column<T> item)
         {
             _columns.Add(item);
         }
@@ -88,17 +89,17 @@ namespace MvcHelper
             _columns.Clear();
         }
 
-        public bool Contains(FlexigridColumn<T> item)
+        public bool Contains(Column<T> item)
         {
             return _columns.Contains(item);
         }
 
-        public void CopyTo(FlexigridColumn<T>[] array, int arrayIndex)
+        public void CopyTo(Column<T>[] array, int arrayIndex)
         {
             _columns.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(FlexigridColumn<T> item)
+        public bool Remove(Column<T> item)
         {
             return _columns.Remove(item);
         }

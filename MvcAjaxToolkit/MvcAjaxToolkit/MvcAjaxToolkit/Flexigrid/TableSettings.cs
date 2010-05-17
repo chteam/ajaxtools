@@ -1,13 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
+using MvcAjaxToolkit.Interface;
+using MvcAjaxToolkit;
 
-namespace MvcHelper
+namespace MvcAjaxToolkit.Flexigrid
 {
     public class TableSettings<T> where T : class
     {
         #region Private Fields
 
-        private readonly IGridRenderer<TableSettings<T>> _renderer;
+        private readonly IGridRender<TableSettings<T>> _renderer;
 
         #endregion
 
@@ -19,7 +21,7 @@ namespace MvcHelper
             MenuId = null;
             EnableTableToggleButton = false;
             GridColumns = new ColumnCollection<T>();
-            _renderer = new FlexigridRenderer<T>();
+            _renderer = new FlexigridRender<T>();
         }
 
         #endregion

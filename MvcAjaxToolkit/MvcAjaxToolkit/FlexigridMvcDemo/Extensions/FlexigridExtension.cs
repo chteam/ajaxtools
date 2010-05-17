@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MvcHelper;
+using MvcAjaxToolkit;
 using System.Collections;
 using System.Data;
 using System.Linq.Expressions;
+using MvcAjaxToolkit.Flexigrid.Models;
+
 //using FlexigridMvcDemo.Extensions;
 
 namespace FlexigridMvcDemo

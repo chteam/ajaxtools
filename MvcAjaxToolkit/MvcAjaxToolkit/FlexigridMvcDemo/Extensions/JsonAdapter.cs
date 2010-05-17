@@ -1,6 +1,6 @@
 ﻿using System.Web.Script.Serialization;
 using System.Text;
-namespace MvcHelper
+namespace MvcAjaxToolkit
 {
 	/// <summary>
 	/// 序列化与反序列化WEB传递的 JSON数据

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace MvcHelper
+namespace MvcAjaxToolkit.Flexigrid.Models
 {
     public class FlexigridModelProperties<T> where T : class
     {

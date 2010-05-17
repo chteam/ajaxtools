@@ -45,17 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attribute\DescriptionAttribute.cs" />
-    <Compile Include="Attribute\DescriptionAttributeExtensions.cs" />
+    <Compile Include="Attributes\DescriptionAttribute.cs" />
+    <Compile Include="Extensions\DescriptionAttributeExtensions.cs" />
     <Compile Include="Flexigrid\Enum\FlexigridAlign.cs" />
     <Compile Include="Flexigrid\Enum\FlexigridDataType.cs" />
     <Compile Include="Flexigrid\Enum\FlexigridSortOrder.cs" />
     <Compile Include="Flexigrid\FlexigridColumn.cs" />
     <Compile Include="Flexigrid\FlexigridColumnCollection.cs" />
     <Compile Include="Flexigrid\FlexigridColumnSettings.cs" />
-    <Compile Include="Flexigrid\FlexigridRenderer.cs" />
+    <Compile Include="Flexigrid\FlexigridRender.cs" />
     <Compile Include="Flexigrid\FlexigridSettings.cs" />
-    <Compile Include="Flexigrid\FlexigridTableSettings.cs" />
+    <Compile Include="Flexigrid\TableSettings.cs" />
     <Compile Include="Interface\IGridRenderer.cs" />
     <Compile Include="Flexigrid\Models\FlexgridBindModel.cs" />
     <Compile Include="Flexigrid\Models\FlexgridData.cs" />

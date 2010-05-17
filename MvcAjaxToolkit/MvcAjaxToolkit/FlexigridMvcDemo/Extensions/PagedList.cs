@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MvcHelper
+namespace MvcAjaxToolkit
 {
 	public class PagedList<T> : List<T>, IPagedList {
         public PagedList(IEnumerable<T> content, int currentPage, int pageSize,int totalCount)

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 
-namespace MvcHelper
+namespace MvcAjaxToolkit.Flexigrid.Models
 {
     public class FlexgridData<T> where T : class
     {
