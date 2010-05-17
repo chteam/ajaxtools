@@ -89,6 +89,7 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Extensions\FlexigridExtension.cs" />
+    <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\IPagedList.cs" />
     <Compile Include="Extensions\JsonAdapter.cs" />

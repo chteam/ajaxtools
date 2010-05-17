@@ -45,8 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Flexigrid\Attribute\DescriptionAttribute.cs" />
-    <Compile Include="Flexigrid\Attribute\DescriptionAttributeExtensions.cs" />
+    <Compile Include="Attribute\DescriptionAttribute.cs" />
+    <Compile Include="Attribute\DescriptionAttributeExtensions.cs" />
     <Compile Include="Flexigrid\Enum\FlexigridAlign.cs" />
     <Compile Include="Flexigrid\Enum\FlexigridDataType.cs" />
     <Compile Include="Flexigrid\Enum\FlexigridSortOrder.cs" />
@@ -56,8 +56,7 @@
     <Compile Include="Flexigrid\FlexigridRenderer.cs" />
     <Compile Include="Flexigrid\FlexigridSettings.cs" />
     <Compile Include="Flexigrid\FlexigridTableSettings.cs" />
-    <Compile Include="Flexigrid\HtmlExtensions.cs" />
-    <Compile Include="Flexigrid\IGridRenderer.cs" />
+    <Compile Include="Interface\IGridRenderer.cs" />
     <Compile Include="Flexigrid\Models\FlexgridBindModel.cs" />
     <Compile Include="Flexigrid\Models\FlexgridData.cs" />
     <Compile Include="Flexigrid\Models\FlexgridRowData.cs" />
