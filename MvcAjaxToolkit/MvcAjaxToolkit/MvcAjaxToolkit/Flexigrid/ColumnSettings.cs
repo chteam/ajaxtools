@@ -59,6 +59,24 @@
             ColumnAlignment = align;
             return this;
         }
+        public ColumnSettings Align(string align)
+        {
+            if(align.Length>1)
+                switch (align[0])
+                {
+                    case 'r':
+                        ColumnAlignment = TextAlignMode.Right;
+                        break;
+                    case 'c':
+                        ColumnAlignment = TextAlignMode.Center;
+                        break;
+                    default:
+                        //         case 'l':
+                        ColumnAlignment = TextAlignMode.Left;
+                        break;
+                }
+            return this;
+        }
         /// <summary>
         /// 设置当前列为隐藏列
         /// </summary>

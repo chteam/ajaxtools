@@ -10,9 +10,9 @@ namespace FlexigridMvcDemo
             return new TableSettings<T>();
         }
 
-        public static TableSettings Flexigrid(this HtmlHelper helper)
+        public static TableSettings Flexigrid(this HtmlHelper helper,string id)
         {
-            return new TableSettings();
+            return new TableSettings(id);
         }
     }
 }

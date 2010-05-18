@@ -95,11 +95,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DataConfig.cs" />
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\TEST1Entities.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="S.aspx.cs">
       <DependentUpon>S.aspx</DependentUpon>
@@ -179,12 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data.ashx" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

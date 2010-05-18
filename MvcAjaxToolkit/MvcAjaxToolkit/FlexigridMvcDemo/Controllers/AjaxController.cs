@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
@@ -36,7 +37,7 @@ namespace FlexigridMvcDemo.Controllers
         public ActionResult GetEntity(int? page, int? rp, string sortname, string sortorder)
         {
             PagedList<UserInfo> json;
-            using (var t1 = new Models.TEST1Entities())
+            using (var t1 = new TEST1Entities())
             {
                 var list1 = t1.UserInfo.OrderBy(c => c.Id);
                 //var t = (list1 as ObjectQuery).ToTraceString();
@@ -55,23 +56,28 @@ namespace FlexigridMvcDemo.Controllers
         }
         public ActionResult Remove(int id)
         {
-            using (var conn = new SqlConnection(DataConfig.ConnectionString))
+            using (var t1 = new TEST1Entities())
             {
-                var com = conn.CreateCommand();
-                conn.Open();
-                com.CommandText = "delete from userinfo where id=" + id;
-                com.ExecuteNonQuery();
+                var x = t1.UserInfo.FirstOrDefault(c => c.Id == id);
+                if(x!=null)
+                {
+                    t1.UserInfo.Remove(x);
+                }
             }
             return Content("");
         }
         public ActionResult Add()
         {
-            using (var conn = new SqlConnection(DataConfig.ConnectionString))
+            using (var t1 = new TEST1Entities())
             {
-                var com = conn.CreateCommand();
-                conn.Open();
-                com.CommandText = "insert userinfo(name,email,age) values(newid(),newid(),25)";
-                com.ExecuteNonQuery();
+                var id = t1.UserInfo.Max(c => c.Id);
+                t1.UserInfo.Add(new UserInfo
+                                    {
+                                        Id = id + 1,
+                                        Age = 23,
+                                        Email = Guid.NewGuid().ToString(),
+                                        Name = Guid.NewGuid().ToString()
+                                    });
             }
             return Content("");
         }
