@@ -2,9 +2,9 @@
 
 namespace MvcAjaxToolkit.Flexigrid.Models
 {
-    public class FlexgridRowData
+    public class Entity
     {
-        public FlexgridRowData(string id, IList<string> data)
+        public Entity(string id, IList<string> data)
         {
             this.id = id;
             cell = data;

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using MvcAjaxToolkit;
-using System.Collections;
 using System.Data;
 using System.Linq.Expressions;
 using MvcAjaxToolkit.Flexigrid.Models;
+using MvcAjaxToolkit.Pager;
 
 //using FlexigridMvcDemo.Extensions;
 
@@ -22,9 +20,9 @@ namespace FlexigridMvcDemo
         /// <param name="key"></param>
         /// <param name="properties"></param>
         /// <returns></returns>
-        public static FlexgridData<T> ToFlexigridObject<T>(this PagedList<T> list, Expression<Func<T, object>> key, Action<FlexigridModelProperties<T>> properties) where T : class
+        public static EntityContainer<T> ToFlexigridObject<T>(this PagedList<T> list, Expression<Func<T, object>> key, Action<EntityPropertyContainer<T>> properties) where T : class
         {
-            var json = new FlexgridData<T>(
+            var json = new EntityContainer<T>(
                list, list.CurrentPage,
                list.TotalCount,
                key, properties);
@@ -36,9 +34,9 @@ namespace FlexigridMvcDemo
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static FlexgridData<T> ToFlexigridObject<T>(this PagedList<T> list) where T : class
+        public static EntityContainer<T> ToFlexigridObject<T>(this PagedList<T> list) where T : class
         {
-            var json = new FlexgridData<T>(
+            var json = new EntityContainer<T>(
                list, list.CurrentPage,
                list.TotalCount);
             return json;
@@ -63,9 +61,9 @@ namespace FlexigridMvcDemo
         /// <param name="key"></param>
         /// <param name="properties"></param>
         /// <returns></returns>
-        public static FlexgridData<DataRow> ToFlexigridObject(this IEnumerable<DataRow> rows, int page, int total, Expression<Func<DataRow, object>> key, Action<FlexigridModelProperties<DataRow>> properties)
+        public static EntityContainer<DataRow> ToFlexigridObject(this IEnumerable<DataRow> rows, int page, int total, Expression<Func<DataRow, object>> key, Action<EntityPropertyContainer<DataRow>> properties)
         {
-            var json = new FlexgridData<DataRow>(
+            var json = new EntityContainer<DataRow>(
                 rows, page,
                 total,
                 key, properties);

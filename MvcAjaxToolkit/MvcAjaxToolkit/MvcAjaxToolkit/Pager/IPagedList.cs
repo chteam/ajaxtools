@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace MvcAjaxToolkit
+namespace MvcAjaxToolkit.Pager
 {
     public interface IPagedList : IEnumerable
     {

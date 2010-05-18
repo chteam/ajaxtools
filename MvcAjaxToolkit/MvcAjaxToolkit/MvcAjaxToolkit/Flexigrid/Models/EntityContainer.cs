@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace MvcAjaxToolkit.Flexigrid.Models
 {
-    public class FlexgridData<T> where T : class
+    public class EntityContainer<T> where T : class
     {
         #region Private fields
 
@@ -15,7 +15,7 @@ namespace MvcAjaxToolkit.Flexigrid.Models
 
         private readonly int _total;
 
-        private IList<FlexgridRowData> _rows;
+        private IList<Entity> _rows;
 
         #endregion
 
@@ -28,37 +28,37 @@ namespace MvcAjaxToolkit.Flexigrid.Models
         /// <param name="total">总条数</param>
         /// <param name="identifier">主键</param>
         /// <param name="properties">要添加的属性</param>
-        public FlexgridData(IEnumerable<T> data, int page, int total, Expression<Func<T, object>> identifier, Action<FlexigridModelProperties<T>> properties)
+        public EntityContainer(IEnumerable<T> data, int page, int total, Expression<Func<T, object>> identifier, Action<EntityPropertyContainer<T>> properties)
             : this(data, page, total, false)
         {
-            _rows = new List<FlexgridRowData>();
+            _rows = new List<Entity>();
             // 运行主键委托
             var identityDelegate = identifier.Compile();
             // 获取属性集
-            var dataCollection = new FlexigridModelProperties<T>();
+            var dataCollection = new EntityPropertyContainer<T>();
             properties.Invoke(dataCollection);
             foreach (var item in data)
             {
                 var item1 = item;
                 IList<string> rowData = dataCollection.ProperyItem.Select(properyItem => properyItem(item1).ToString()).ToList();
                 // 创建DataList
-                _rows.Add(new FlexgridRowData(identityDelegate(item).ToString(), rowData));
+                _rows.Add(new Entity(identityDelegate(item).ToString(), rowData));
             }
         }
 
-        public FlexgridData(IEnumerable<T> data, int page, int total)
+        public EntityContainer(IEnumerable<T> data, int page, int total)
             : this(data, page, total, true)
         {
         }
 
-        protected FlexgridData(IEnumerable<T> data, int page, int total, bool initializeRows)
+        protected EntityContainer(IEnumerable<T> data, int page, int total, bool initializeRows)
         {
             _data = data;
             _page = page;
             _total = total;
 
             if (!initializeRows) return;
-            _rows = new List<FlexgridRowData>();
+            _rows = new List<Entity>();
 
             var propertyInfos = typeof(T).GetProperties();
 
@@ -76,12 +76,11 @@ namespace MvcAjaxToolkit.Flexigrid.Models
                     }
                 }
 
-                _rows.Add(new FlexgridRowData(id, cells));
+                _rows.Add(new Entity(id, cells));
             }
         }
 
         #endregion
-
         public int page
         {
             get
@@ -98,7 +97,7 @@ namespace MvcAjaxToolkit.Flexigrid.Models
             }
         }
 
-        public IList<FlexgridRowData> rows
+        public IList<Entity> rows
         {
             get
             {

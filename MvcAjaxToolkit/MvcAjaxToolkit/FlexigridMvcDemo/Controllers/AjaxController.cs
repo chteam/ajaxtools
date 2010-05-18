@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using FlexigridMvcDemo.Models;
 using MvcAjaxToolkit;
+using MvcAjaxToolkit.Pager;
 
 namespace FlexigridMvcDemo.Controllers
 {

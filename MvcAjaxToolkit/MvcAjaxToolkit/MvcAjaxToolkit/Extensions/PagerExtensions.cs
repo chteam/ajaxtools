@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MvcAjaxToolkit.Pager;
 
 namespace MvcAjaxToolkit
 {
-    public static class PagerExt
+    public static class PagerExtensions
     {
         const int DefaultPageSize = 20;
         public static PagedList<T> Pager<T>(this  IQueryable<T> source, int currentPage, int pageSize)

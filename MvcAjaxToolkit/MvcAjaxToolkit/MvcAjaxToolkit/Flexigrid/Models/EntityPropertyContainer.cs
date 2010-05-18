@@ -4,7 +4,8 @@ using System.Linq.Expressions;
 
 namespace MvcAjaxToolkit.Flexigrid.Models
 {
-    public class FlexigridModelProperties<T> where T : class
+
+    public class EntityPropertyContainer<T> where T : class
     {
         private readonly IList<Func<T, object>> _propertyCollection = new List<Func<T, object>>();
 
@@ -16,7 +17,7 @@ namespace MvcAjaxToolkit.Flexigrid.Models
             }
         }
 
-        public FlexigridModelProperties<T> Add(Expression<Func<T, object>> item)
+        public EntityPropertyContainer<T> Add(Expression<Func<T, object>> item)
         {
             ProperyItem.Add(item.Compile());
             return this;

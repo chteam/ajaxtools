@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using MvcAjaxToolkit.Flexigrid;
 
-namespace MvcAjaxToolkit
+namespace FlexigridMvcDemo
 {
     public static class HtmlExtensions
     {
