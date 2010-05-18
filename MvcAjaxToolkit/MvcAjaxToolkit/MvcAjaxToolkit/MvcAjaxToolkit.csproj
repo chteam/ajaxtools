@@ -51,7 +51,7 @@
     <Compile Include="Flexigrid\ColumnCollection.cs" />
     <Compile Include="Flexigrid\ColumnSettings.cs" />
     <Compile Include="Flexigrid\FlexigridRender.cs" />
-    <Compile Include="Flexigrid\FlexigridSettings.cs" />
+    <Compile Include="Flexigrid\TableSettings.cs" />
     <Compile Include="Flexigrid\TableSettings~.cs" />
     <Compile Include="Interface\IGridRenderer.cs" />
     <Compile Include="Flexigrid\Models\FlexgridBindModel.cs" />
