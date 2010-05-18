@@ -16,7 +16,7 @@
             <li><%=Html.ActionLink("gridext with javascript only","Gridext","Home")%></li>
             <li><%=Html.ActionLink("gridext with ContextMenu and Templ","GridextContextMenu","Home")%></li>
              <li><%=Html.ActionLink("GridextHelper", "GridextHelper", "Home")%></li>
-            <li>Server</li>
+            <li></li>
         </ul>
     </div>
     <div style="float:left">
