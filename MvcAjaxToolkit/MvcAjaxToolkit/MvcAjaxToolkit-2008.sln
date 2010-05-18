@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexigridMvcDemo", "FlexigridMvcDemo\FlexigridMvcDemo.csproj", "{9A69FAA4-6969-4631-92E4-630451A1CF03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcAjaxToolkit", "MvcAjaxToolkit\MvcAjaxToolkit.csproj", "{871A54D8-2E10-4F30-996F-5CF8A9A07088}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs10.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = FlexigridMvcDemo\\FlexigridMvcDemo.csproj
+		SccProjectName1 = FlexigridMvcDemo
+		SccLocalPath1 = FlexigridMvcDemo
+		SccProjectUniqueName2 = MvcAjaxToolkit\\MvcAjaxToolkit.csproj
+		SccProjectName2 = MvcAjaxToolkit
+		SccLocalPath2 = MvcAjaxToolkit
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A69FAA4-6969-4631-92E4-630451A1CF03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A69FAA4-6969-4631-92E4-630451A1CF03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A69FAA4-6969-4631-92E4-630451A1CF03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A69FAA4-6969-4631-92E4-630451A1CF03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{871A54D8-2E10-4F30-996F-5CF8A9A07088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{871A54D8-2E10-4F30-996F-5CF8A9A07088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{871A54D8-2E10-4F30-996F-5CF8A9A07088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{871A54D8-2E10-4F30-996F-5CF8A9A07088}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
