@@ -1,11 +1,11 @@
 ﻿using MvcAjaxToolkit.Attributes;
 
-namespace MvcAjaxToolkit.Flexigrid
+namespace MvcAjaxToolkit
 {
     /// <summary>
     /// 排序方式
     /// </summary>
-    public enum FlexigridSortOrder
+    public enum SortOrderType
     {
         [Description("asc")]
         Ascending = 0,

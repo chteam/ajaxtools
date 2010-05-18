@@ -1,6 +1,6 @@
 ﻿namespace MvcAjaxToolkit.Flexigrid
 {
-    public class FlexigridSettings
+    public class TableSettings
     {
         public override string ToString()
         {

@@ -1,26 +1,28 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Web.UI;
 using MvcAjaxToolkit.Interface;
-using MvcAjaxToolkit;
 
 namespace MvcAjaxToolkit.Flexigrid
 {
     public class FlexigridRender<T> : IGridRender<TableSettings<T>> where T : class
     {
-
-        private static int _gridIndex;
-        private string _gridId = string.Empty;
+        //private static int _gridGlobalIndex;
+        private string _id = string.Empty;
         public string Render(TableSettings<T> data)
         {
-            Init(data);
+            // 初始化基本信息
+            _id = string.IsNullOrEmpty(data.GridId)
+                          ? string.Format("FlexiGrid_{0}", Guid.NewGuid().ToString("N"))
+                          : data.GridId;
             using (var sw = new StringWriter())
             {
                 using (var writer = new HtmlTextWriter(sw))
                 {
                     //创建Table
                     writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "none");
-                    writer.AddAttribute(HtmlTextWriterAttribute.Id, _gridId);
+                    writer.AddAttribute(HtmlTextWriterAttribute.Id, _id);
                     writer.RenderBeginTag(HtmlTextWriterTag.Table);
                     writer.RenderEndTag();
                     if (!data.EnableDefaultPager && !string.IsNullOrEmpty(data.PageFilter))
@@ -43,14 +45,6 @@ namespace MvcAjaxToolkit.Flexigrid
             }
         }
 
-        private void Init(TableSettings<T> data)
-        {
-            // 初始化基本信息
-            _gridId = string.IsNullOrEmpty(data.GridId)
-                          ? string.Format("FlexiGrid_{0}", _gridIndex++)
-                          : data.GridId;
-        }
-
         //生成Javascript，此Javascript加以作用域控制
         private string GenerateJavascript(TableSettings<T> data)
         {
@@ -59,7 +53,7 @@ namespace MvcAjaxToolkit.Flexigrid
             int count = 0;
             int totalCount = data.GridColumns.Count;
             //生成列
-            foreach (Column<T> column in data.GridColumns)
+            foreach (Column column in data.GridColumns)
             {
                 count++;
                 sb.Append("{");
@@ -93,7 +87,7 @@ namespace MvcAjaxToolkit.Flexigrid
             }
             sb.AppendLine("];");
             sb.AppendFormat(@"$('#{0}').gridext('{1}',cols,'{2}',{3},",
-                            _gridId, data.ActionUrl, data.MenuId, data.MenuProcess ?? "null")
+                            _id, data.ActionUrl, data.MenuId, data.MenuProcess ?? "null")
                 .Append("{");
             if (data.EnableDefaultPager)
                 sb.Append("usedefalutpager:true,");
@@ -109,30 +103,13 @@ namespace MvcAjaxToolkit.Flexigrid
                 sb.Append("colMove:true,");
             if (data.ColResize)
                 sb.Append("colResize:true,");
-            if (data.GridDataType != FlexigridDataType.Json)
+            if (data.GridDataType != DataType.Json)
                 sb.Append("dataType:'xml',");
             sb.AppendFormat("rp:{0}", data.PageSize).Append("});");
             // $(".table1").gridext('Ajax/GetEntity', colModel, '#tablemenu', process,
             //{ colResize: true, colMove: true}); ;
             sb.Append("})();");
 
-            //if (!string.IsNullOrEmpty(data.DefaultSortField))
-            //{
-            //    sb.AppendFormat(@"sortname:""{0}"",", data.DefaultSortField).AppendLine();
-            //    sb.AppendFormat(@"sortorder:""{0}""", data.DefaultSortOrder.GetDescription()).AppendLine();
-            //}
-
-            //if (data.EnableTableToggleButton)
-            //{
-            //    sb.AppendFormat(",{0}", Environment.NewLine);
-            //    sb.AppendFormat(@"showTableToggleBtn: {0}", data.EnableTableToggleButton.ToString().ToLower());
-            //}
-
-            //if (data.GridWidth > 0)
-            //{
-            //    sb.AppendFormat(",{0}", Environment.NewLine);
-            //    sb.AppendFormat(@"width:{0}", data.GridWidth);
-            //}
             return sb.ToString();
         }
 

@@ -32,7 +32,7 @@ namespace MvcAjaxToolkit.Flexigrid
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GridWidth { get; private set; }
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public FlexigridSortOrder DefaultSortOrder { get; private set; }
+        public SortOrderType DefaultSortOrder { get; private set; }
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string DefaultSortField { get; private set; }
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -48,7 +48,7 @@ namespace MvcAjaxToolkit.Flexigrid
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GridTitle { get; private set; }
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public FlexigridDataType GridDataType { get; private set; }
+        public DataType GridDataType { get; private set; }
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ActionUrl { get; private set; }
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -89,7 +89,7 @@ namespace MvcAjaxToolkit.Flexigrid
         /// </summary>
         /// <param name="dataType"></param>
         /// <returns></returns>
-        public TableSettings<T> DataType(FlexigridDataType dataType)
+        public TableSettings<T> DataType(DataType dataType)
         {
             GridDataType = dataType;
             return this;
@@ -161,7 +161,7 @@ namespace MvcAjaxToolkit.Flexigrid
         /// <param name="fieldName"></param>
         /// <param name="order"></param>
         /// <returns></returns>
-        public TableSettings<T> DefaultSortOption(string fieldName, FlexigridSortOrder order)
+        public TableSettings<T> DefaultSortOption(string fieldName, SortOrderType order)
         {
             DefaultSortField = fieldName;
             DefaultSortOrder = order;

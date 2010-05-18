@@ -1,10 +1,8 @@
-﻿using MvcAjaxToolkit;
-
-namespace MvcAjaxToolkit.Flexigrid
+﻿namespace MvcAjaxToolkit.Flexigrid
 {
     public class ColumnSettings
     {
-        internal FlexigridAlign ColumnAlignment { get; private set; }
+        internal TextAlignMode ColumnAlignment { get; private set; }
         internal bool ColumnSortable { get; private set; }
         internal string ColumnTitle { get; private set; }
         internal int ColumnWidth { get; private set; }
@@ -56,7 +54,7 @@ namespace MvcAjaxToolkit.Flexigrid
         /// </summary>
         /// <param name="align"></param>
         /// <returns></returns>
-        public ColumnSettings Align(FlexigridAlign align)
+        public ColumnSettings Align(TextAlignMode align)
         {
             ColumnAlignment = align;
             return this;

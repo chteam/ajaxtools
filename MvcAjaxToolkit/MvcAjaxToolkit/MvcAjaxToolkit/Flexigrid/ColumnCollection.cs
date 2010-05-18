@@ -2,15 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using MvcAjaxToolkit.Flexigrid;
 
-namespace MvcAjaxToolkit
+namespace MvcAjaxToolkit.Flexigrid
 {
-    public class ColumnCollection<T> : ICollection<Column<T>> where T : class
+    public class ColumnCollection<T> : ICollection<Column> where T : class
     {
         #region Private fields
 
-        private readonly IList<Column<T>> _columns = new List<Column<T>>();
+        private readonly IList<Column> _columns = new List<Column>();
 
         #endregion
 
@@ -56,7 +55,7 @@ namespace MvcAjaxToolkit
 
         public ColumnSettings Bind(string bindField)
         {
-            var column = new Column<T>(bindField);
+            var column = new Column(bindField);
             _columns.Add(column);
             return column.ColumnSettings;
         }
@@ -65,7 +64,7 @@ namespace MvcAjaxToolkit
 
         #region Implementation of IEnumerable
 
-        public IEnumerator<Column<T>> GetEnumerator()
+        public IEnumerator<Column> GetEnumerator()
         {
             return _columns.GetEnumerator();
         }
@@ -79,7 +78,7 @@ namespace MvcAjaxToolkit
 
         #region Implementation of ICollection<FlexiGridColumn<T>>
 
-        public void Add(Column<T> item)
+        public void Add(Column item)
         {
             _columns.Add(item);
         }
@@ -89,17 +88,17 @@ namespace MvcAjaxToolkit
             _columns.Clear();
         }
 
-        public bool Contains(Column<T> item)
+        public bool Contains(Column item)
         {
             return _columns.Contains(item);
         }
 
-        public void CopyTo(Column<T>[] array, int arrayIndex)
+        public void CopyTo(Column[] array, int arrayIndex)
         {
             _columns.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(Column<T> item)
+        public bool Remove(Column item)
         {
             return _columns.Remove(item);
         }

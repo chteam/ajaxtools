@@ -1,11 +1,11 @@
 ﻿using MvcAjaxToolkit.Attributes;
 
-namespace MvcAjaxToolkit.Flexigrid
+namespace MvcAjaxToolkit
 {
     /// <summary>
     /// 对齐方式
     /// </summary>
-    public enum FlexigridAlign
+    public enum TextAlignMode
     {
         [Description("left")]
         Left = 0,

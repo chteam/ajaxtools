@@ -1,8 +1,6 @@
-﻿using MvcAjaxToolkit.Flexigrid;
-
-namespace MvcAjaxToolkit
+﻿namespace MvcAjaxToolkit.Flexigrid
 {
-    public class Column<T>
+    public class Column
     {
         public Column(string fieldName)
         {

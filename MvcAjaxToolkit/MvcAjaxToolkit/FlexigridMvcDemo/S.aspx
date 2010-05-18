@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="S.aspx.cs" Inherits="FlexigridMvcDemo.S" %>
-<%@ Import Namespace="MvcAjaxToolkit.Flexigrid.Enum" %>
-<%@ Import Namespace="MvcAjaxToolkit.Flexigrid" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -30,13 +28,13 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <%= new FlexigridTableSettings<FlexigridMvcDemo.Models.UserInfo>()
-             .TableId("flex1")
+        <%= new MvcAjaxToolkit.Flexigrid.TableSettings<FlexigridMvcDemo.Models.UserInfo>()
+           // .TableId("flex1")
              .Action("/Ajax/GetEntity")
              .Columns(col => 
                {
                    col.Bind(e => e.Id, "Id").Hide();
-                   col.Bind(e => e.Name, "Name",180,true).Align(FlexigridAlign.Left);
+                   col.Bind(e => e.Name, "Name", 180, true).Align(TextAlignMode.Left);
                    col.Bind(e => e.Email).Width(20).Title("email");
                    col.Bind(e => e.Age).Title("Age").Width(300)
                        .Template("<span style='color:red'> ${Name} - ${Id} </span>");

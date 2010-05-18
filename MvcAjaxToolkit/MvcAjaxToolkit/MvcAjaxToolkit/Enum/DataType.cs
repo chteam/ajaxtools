@@ -1,11 +1,11 @@
 ﻿using MvcAjaxToolkit.Attributes;
 
-namespace MvcAjaxToolkit.Flexigrid
+namespace MvcAjaxToolkit
 {
     /// <summary>
     /// 数据传输方式
     /// </summary>
-    public enum FlexigridDataType
+    public enum DataType
     {
         [Description("json")]
         Json = 0,
