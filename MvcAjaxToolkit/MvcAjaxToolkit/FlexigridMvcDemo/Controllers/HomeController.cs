@@ -1,26 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FlexigridMvcDemo.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
         public ActionResult Index()
         {
-            TempData["a"] = "sss";
-            Response.Redirect("/home/about");
-            return RedirectToAction("About");
+            return View();
         }
-        public ActionResult About()
+
+        public ActionResult Flexigrid()
         {
-             
-            return Content(TempData["a"].ToString());
-        }   
+            return View();
+        }
+
+        public ActionResult Gridext()
+        {
+            return View();
+        }
+
+        public ActionResult GridextContextMenu()
+        {
+            return View();
+        }
+
+        public ActionResult GridextHelper()
+        {
+            return View();
+        }
     }
 }
