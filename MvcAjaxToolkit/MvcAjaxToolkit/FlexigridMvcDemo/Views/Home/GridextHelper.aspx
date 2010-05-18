@@ -32,8 +32,6 @@
                })
             .Title("Employees")
             .SetPageSize(10)
-            .ColumnsMove()
-            .ColumnsResize()
             .ContextMenu("#tablemenu","process")
             .AutoLoad()
             .SetPager(".page") 
