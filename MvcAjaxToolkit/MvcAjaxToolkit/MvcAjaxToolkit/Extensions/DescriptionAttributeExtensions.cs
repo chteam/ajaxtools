@@ -1,6 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Reflection;
-using MvcAjaxToolkit.Attributes;
 
 namespace MvcAjaxToolkit
 {
@@ -16,7 +16,7 @@ namespace MvcAjaxToolkit
 
                 if (attrs != null && attrs.Length > 0)
                 {
-                    return ((DescriptionAttribute)attrs[0]).Text;
+                    return ((DescriptionAttribute)attrs[0]).Description;
                 }
             }
             return e.ToString();

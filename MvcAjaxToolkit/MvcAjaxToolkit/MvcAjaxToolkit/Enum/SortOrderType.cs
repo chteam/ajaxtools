@@ -1,5 +1,4 @@
-﻿using MvcAjaxToolkit.Attributes;
-
+﻿using System.ComponentModel;
 namespace MvcAjaxToolkit
 {
     /// <summary>

@@ -40,7 +40,6 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\DescriptionAttribute.cs" />
     <Compile Include="Extensions\DescriptionAttributeExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\PagerExtensions.cs" />
