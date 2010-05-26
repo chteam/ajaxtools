@@ -382,102 +382,101 @@
                 var tbody = document.createElement('tbody');
 
                 if (p.dataType == 'json') {
-                    $.each
-				    		    (
-						    		    data.rows,
-             function (i, row) {
-                 var tr = document.createElement('tr');
-                 if (i % 2 && p.striped) tr.className = 'erow';
-
-                 if (row.id) {
-                     tr.id = 'row' + row.id;
-                     p.rows[tr.id] = row.cell;
-                 }
-
-                 //add cell
-                 $('thead tr:first th', g.hDiv).each
-                            (
-                                function () {
-
-                                    var td = document.createElement('td');
-                                    var idx = $(this).attr('axis').substr(3);
-                                    td.align = this.align;
-                                    td.innerHTML = row.cell[idx];
-                                    $(tr).append(td);
-                                    td = null;
-                                }
-                            );
-
-
-                 if ($('thead', this.gDiv).length < 1) //handle if grid has no headers
-                 {
-
-                     for (idx = 0; idx < cell.length; idx++) {
-                         var td = document.createElement('td');
-                         td.innerHTML = row.cell[idx];
-                         $(tr).append(td);
-                         td = null;
-                     }
-                 }
-
-                 $(tbody).append(tr);
-                 tr = null;
-             }
-                    );
-
-                } else if (p.dataType == 'xml') {
-
-                    i = 1;
-
-                    $("rows row", data).each
-                (
-
-                    function () {
-                        i++;
-
+                    var colns=this.getColNames();
+                    $.each(data.rows,function (i, row) {
                         var tr = document.createElement('tr');
                         if (i % 2 && p.striped) tr.className = 'erow';
+                        var entity = {};
+                        if (row.id) {
+                            tr.id = 'row' + row.id;
+                            //
+                            for (var i = 0; i < data.keys.length; i++) {
+                                entity[data.keys[i]] = row.cell[i];
+                            }
+                            //
+                            p.rows[tr.id] = row.id;
+                        }
 
-                        var nid = $(this).attr('id');
-                        if (nid) tr.id = 'row' + nid;
-
-                        nid = null;
-
-                        var robj = this;
-
-
-
-                        $('thead tr:first th', g.hDiv).each
-                            (
-                                function () {
+                         //add cell
+                         $('thead tr:first th', g.hDiv).each(function () {
                                     var td = document.createElement('td');
                                     var idx = $(this).attr('axis').substr(3);
                                     td.align = this.align;
-                                    td.innerHTML = $("cell:eq(" + idx + ")", robj).text();
+                                    var n= $(this).attr('abbr').substr(3);//add
+                                    //td.innerHTML = row.cell[idx];
+                                    td.innerHTML=entity[n];
                                     $(tr).append(td);
                                     td = null;
-                                }
-                            );
+                                });
 
 
-                        if ($('thead', this.gDiv).length < 1) //handle if grid has no headers
-                        {
-                            $('cell', this).each
-                                (
-                                    function () {
-                                        var td = document.createElement('td');
-                                        td.innerHTML = $(this).text();
-                                        $(tr).append(td);
-                                        td = null;
-                                    }
-                                );
-                        }
+                         if ($('thead', this.gDiv).length < 1) //handle if grid has no headers
+                         {
+                             for (idx = 0; idx < cell.length; idx++) {
+                                 var td = document.createElement('td');
+                                 td.innerHTML = row.cell[idx];
+                                 $(tr).append(td);
+                                 td = null;
+                             }
+                          }
 
-                        $(tbody).append(tr);
-                        tr = null;
-                        robj = null;
-                    }
-                );
+                         $(tbody).append(tr);
+                         tr = null;
+                     });
+
+                } else if (p.dataType == 'xml') {
+                    alert('didn\'t supports xml')
+//                    i = 1;
+
+//                    $("rows row", data).each
+//                (
+
+//                    function () {
+//                        i++;
+
+//                        var tr = document.createElement('tr');
+//                        if (i % 2 && p.striped) tr.className = 'erow';
+
+//                        var nid = $(this).attr('id');
+//                        if (nid) tr.id = 'row' + nid;
+
+//                        nid = null;
+
+//                        var robj = this;
+
+
+
+//                        $('thead tr:first th', g.hDiv).each
+//                            (
+//                                function () {
+//                                    var td = document.createElement('td');
+//                                    var idx = $(this).attr('axis').substr(3);
+//                                    td.align = this.align;
+//                                    td.innerHTML = $("cell:eq(" + idx + ")", robj).text();
+//                                    $(tr).append(td);
+//                                    td = null;
+//                                }
+//                            );
+
+
+//                        if ($('thead', this.gDiv).length < 1) //handle if grid has no headers
+//                        {
+//                            $('cell', this).each
+//                                (
+//                                    function () {
+//                                        var td = document.createElement('td');
+//                                        td.innerHTML = $(this).text();
+//                                        $(tr).append(td);
+//                                        td = null;
+//                                    }
+//                                );
+//                        }
+
+//                        $(tbody).append(tr);
+//                        tr = null;
+//                        robj = null;
+//                    }
+//                );
 
                 }
 
@@ -598,15 +597,12 @@
                 if (!p.newp || p.newp < 1) p.newp = 1;
 
                 if (p.page > p.pages) p.page = p.pages;
-                var param = { page: p.newp, rp: p.rp, sortname: p.sortname, sortorder: p.sortorder };
-                //                var param = [
-                //					 { name: 'page', value: p.newp }
-                //					, { name: 'rp', value: p.rp }
-                //					, { name: 'sortname', value: p.sortname }
-                //					, { name: 'sortorder', value: p.sortorder }
-                //					, { name: 'query', value: p.query }
-                //					, { name: 'qtype', value: p.qtype }
-                //				];
+                var param = { 
+                    'page': p.newp, 
+                    'rp': p.rp, 
+                    'sortname': p.sortname,
+                    'sortorder': p.sortorder 
+                 };
                 if (p.params) {
                     //                    for (var pi = 0; pi < p.params.length; pi++)
                     //                        param[param.length] = p.params[pi];
@@ -629,13 +625,6 @@
                     error: function (XMLHttpRequest, textStatus, errorThrown) { try { if (p.onError) p.onError(XMLHttpRequest, textStatus, errorThrown); } catch (e) { } }
                 });
             },
-            //            doSearch: function () {
-            //                p.query = $('input[name=q]', g.sDiv).val();
-            //                p.qtype = $('select[name=qtype]', g.sDiv).val();
-            //                p.newp = 1;
-
-            //                this.populate();
-            //            },
             changePage: function (ctype) { //change page
 
                 if (this.loading) return true;
@@ -663,9 +652,16 @@
                     this.populate();
 
             },
+            getColNames:function(){
+                 var arr=new Array();
+                  for (var i = 0; i < p.colModel.length; i++)
+                               arr.push( p.colModel[i].name);
+                 return arr;
+            },
             getRow: function (key) {
-                if (key.indexOf('row') == -1 && !isNaN(key))
-                    key = 'row' + key;
+                //if (key.indexOf("row") >-1 || isNaN(key))
+                var t=key.toString().substr(3);
+                key = key.toString().substr(3);
                 var ret; var ret2 = {};
                 if (g) {
                     ret = p.rows[key];
@@ -694,9 +690,7 @@
                                     this.className = 'sorted';
                                 }
                                 $(tdDiv).css({ textAlign: pth.align, width: $('div:first', pth)[0].style.width });
-
                                 if (pth.hide) $(this).css('display', 'none');
-
                             }
 
                             if (p.nowrap == false) $(tdDiv).css('white-space', 'normal');
@@ -924,9 +918,6 @@
             (
                 function () {
                     var thdiv = document.createElement('div');
-
-
-
                     if ($(this).attr('abbr')) {
                         $(this).click(
                                 function (e) {
@@ -935,9 +926,7 @@
                                     var obj = (e.target || e.srcElement);
                                     if (obj.href || obj.type) return true;
                                     g.changeSort(this);
-                                }
-                            )
-                            ;
+                                });
 
                         if ($(this).attr('abbr') == p.sortname) {
                             this.className = 'sorted';
@@ -961,8 +950,7 @@
                     $(this).empty().append(thdiv).removeAttr('width')
                         .mousedown(function (e) {
                             g.dragStart('colMove', e, this);
-                        })
-                        .hover(
+                        }).hover(
                             function () {
                                 if (!g.colresize && !$(this).hasClass('thMove') && !g.colCopy) $(this).addClass('thOver');
 
@@ -1273,17 +1261,14 @@
             var cn = 0;
 
 
-            $('th div', g.hDiv).each
-            			(
-            			 	function () {
+            $('th div', g.hDiv).each(function () {
             			 	    var kcol = $("th[axis='col" + cn + "']", g.hDiv)[0];
             			 	    var chk = 'checked="checked"';
             			 	    if (kcol.style.display == 'none') chk = '';
 
             			 	    $('tbody', g.nDiv).append('<tr><td class="ndcol1"><input type="checkbox" ' + chk + ' class="togCol" value="' + cn + '" /></td><td class="ndcol2">' + this.innerHTML + '</td></tr>');
             			 	    cn++;
-            			 	}
-            			);
+            			 	});
 
             if ($.browser.msie && $.browser.version < 7.0)
                 $('tr', g.nDiv).hover
@@ -1383,7 +1368,6 @@
     $(document).ready(function () { docloaded = true });
 
     $.fn.flexigrid = function (p) {
-
         return this.each(function () {
             if (!docloaded) {
                 $(this).hide();
@@ -1398,23 +1382,20 @@
                 $.addFlex(this, p);
             }
         });
+    };
 
-    }; //end flexigrid
-
-    $.fn.flexReload = function (p) { // function to reload grid
-
+    $.fn.flexReload = function (p) {
         return this.each(function () {
             if (this.grid && this.p.url) this.grid.populate();
         });
+    };
 
-    }; //end flexReload
-
-    $.fn.flexOptions = function (p) { //function to update general options
+    $.fn.flexOptions = function (p) {
         return this.each(function () {
             if (this.grid) $.extend(this.p, p);
         });
 
-    }; //end flexOptions
+    }; 
     $.fn.flexGetPage = function (page, data) {
         return this.flexOptions({ newp: page, params: data }).flexReload();
     };
@@ -1433,7 +1414,7 @@
             if (this.grid) this.grid.toggleCol(cid, visible);
         });
 
-    }; //end flexToggleCol
+    };
 
     $.fn.flexAddData = function (data) { // function to add data to grid
         return this.each(function () {
