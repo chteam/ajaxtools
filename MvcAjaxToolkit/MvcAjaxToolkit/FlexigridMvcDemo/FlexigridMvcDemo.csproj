@@ -108,7 +108,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\flexigrid\flexigrid.js" />
     <Content Include="Scripts\flexigrid\flexigrid.pack.js" />
-    <Content Include="Scripts\flexigrid\flexigrids.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\menu\contextmenu.pack.js" />
     <Content Include="Scripts\menu\contextmenu.js" />

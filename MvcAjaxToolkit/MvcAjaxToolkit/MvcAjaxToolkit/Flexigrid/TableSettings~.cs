@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Web.UI;
 using MvcAjaxToolkit.Interface;
 using MvcAjaxToolkit;
 
@@ -22,6 +23,10 @@ namespace MvcAjaxToolkit.Flexigrid
             EnableTableToggleButton = false;
             GridColumns = new ColumnCollection<T>();
             _renderer = new FlexigridRender<T>();
+        }
+        public TableSettings(Page page):this()
+        {
+            page.ClientScript.RegisterClientScriptInclude("uk","uk.js");
         }
 
         #endregion

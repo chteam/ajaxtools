@@ -20,19 +20,19 @@
             //  width: 'auto', //auto width
             striped: true, //apply odd even stripes
             //colMove:false,
-            novstripe: false,
+            //novstripe: false,
             minwidth: 30, //min width of columns
             minheight: 80, //min height of columns
-            resizable: false, //resizable table
+            //resizable: false, //resizable table
             url: false, //ajax url
             method: 'POST', // data sending method
             dataType: 'json', // type of data loaded 
             errormsg: '\u8fde\u63a5\u9519\u8bef',
-            usepager: false, //
+            //usepager: false, //
             nowrap: true, //
             page: 1, //current page
             total: 1, //total pages
-            useRp: false, //use the results per page select box
+            //useRp: false, //use the results per page select box
             rp: 20, // results per page
             // rpOptions: [10], //, 15, 20, 25, 40],
             pagestat: '\u5f53\u524d\u4e3a {from} - {to} \u6761 \u5171 {total} \u6761',
@@ -44,17 +44,17 @@
             // qtype: '',
             nomsg: '\u5f53\u524d\u65e0\u8bb0\u5f55',
             minColToggle: 1, //minimum allowed column to be hidden
-            showToggleBtn: false, //show or hide column toggle popup
+            //showToggleBtn: false, //show or hide column toggle popup
             hideOnSubmit: true,
-            autoload: false,
+            //autoload: false,
             blockOpacity: 0.5,
-            onDragCol: false,
-            onToggleCol: false,
-            onChangeSort: false,
-            onSuccess: false,
-            onError: false,
-            onSubmit: false // using a custom populate function
-            , mulitSelect: false
+            //onDragCol: false,
+            //onToggleCol: false,
+            //onChangeSort: false,
+            //onSuccess: false,
+            //onError: false,
+           // onSubmit: false // using a custom populate function
+          // , mulitSelect: false
         }, p);
 
 
@@ -1420,11 +1420,12 @@
     };
 
     $.fn.flexGetData = function (key) {
+        var ret = {};
         this.each(function () {
             if (this.grid)
-                return this.grid.getRow(key);
+                ret = this.grid.getRow(key);
         });
-        return {};
+        return ret;
     };
     $.fn.flexToggleCol = function (cid, visible) { // function to reload grid
 

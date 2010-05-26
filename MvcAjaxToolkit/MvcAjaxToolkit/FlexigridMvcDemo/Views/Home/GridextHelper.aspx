@@ -15,11 +15,12 @@
 <script type="text/javascript">
     var process = {
         add: function (d) {
-            alert(d.row.id);
+            alert(d.row.Id);
         }
     };
     </script>
-      <%= new MvcAjaxToolkit.Flexigrid.TableSettings<FlexigridMvcDemo.Models.UserInfo>()
+      <%= new MvcAjaxToolkit.Flexigrid
+    .TableSettings<FlexigridMvcDemo.Models.UserInfo>(this.Page)
            .TableId("flex1")
              .Action("/Ajax/GetEntity")
              .Columns(col => 
