@@ -7,19 +7,34 @@ namespace MvcAjaxToolkit.Flexigrid.Models
 
     public class EntityPropertyContainer<T> where T : class
     {
-        private readonly IList<Func<T, object>> _propertyCollection = new List<Func<T, object>>();
-
-        internal IList<Func<T, object>> ProperyItem
+        public EntityPropertyContainer()
         {
-            get
-            {
-                return _propertyCollection;
-            }
+            ProperyValue = new List<Func<T, object>>();
+            ProperyKey = new List<string>();
         }
 
-        public EntityPropertyContainer<T> Add(Expression<Func<T, object>> item)
+        internal IList<Func<T, object>> ProperyValue { get; set; }
+        internal IList<string> ProperyKey { get; set; }
+        public EntityPropertyContainer<T> Add(Expression<Func<T, object>> value)
         {
-            ProperyItem.Add(item.Compile());
+            var m=(value.Body.RemoveUnary() as MemberExpression);
+            if (m != null)
+                ProperyKey.Add(m.Member.Name);
+            ProperyValue.Add(value.Compile());
+            return this;
+        }
+        public EntityPropertyContainer<T> Add(Expression<Func<T, object>> key,Expression<Func<T, object>> value)
+        {
+            var m = (key.Body.RemoveUnary() as MemberExpression);
+            if (m != null)
+                ProperyKey.Add(m.Member.Name);
+            ProperyValue.Add(value.Compile());
+            return this;
+        }
+        public EntityPropertyContainer<T> Add(string key,Expression<Func<T, object>> value)
+        {
+            ProperyKey.Add(key);
+            ProperyValue.Add(value.Compile());
             return this;
         }
     }

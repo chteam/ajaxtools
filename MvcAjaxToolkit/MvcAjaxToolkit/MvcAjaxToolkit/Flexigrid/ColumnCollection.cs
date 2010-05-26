@@ -32,7 +32,7 @@ namespace MvcAjaxToolkit.Flexigrid
 
         public ColumnSettings Bind(Expression<Func<T, object>> action)
         {
-            var expression = RemoveUnary(action.Body) as MemberExpression;
+            var expression = action.Body.RemoveUnary() as MemberExpression;
             if (expression == null) throw new ArgumentException("非法的使用Bind方法，当前表达式不可解析");
             return Bind(expression.Member.Name);
         }
@@ -111,16 +111,6 @@ namespace MvcAjaxToolkit.Flexigrid
         public bool IsReadOnly
         {
             get { return false; }
-        }
-
-        #endregion
-
-        #region Private methods
-
-        private static Expression RemoveUnary(Expression body)
-        {
-            var uniary = body as UnaryExpression;
-            return uniary != null ? uniary.Operand : body;
         }
 
         #endregion

@@ -8,15 +8,11 @@ namespace MvcAjaxToolkit.Flexigrid.Models
     public class EntityContainer<T> where T : class
     {
         #region Private fields
-
         private readonly IEnumerable<T> _data;
-
         private readonly int _page;
-
         private readonly int _total;
-
         private IList<Entity> _rows;
-
+        private IList<string> _keys;
         #endregion
 
         #region Constructor
@@ -28,7 +24,9 @@ namespace MvcAjaxToolkit.Flexigrid.Models
         /// <param name="total">总条数</param>
         /// <param name="identifier">主键</param>
         /// <param name="properties">要添加的属性</param>
-        public EntityContainer(IEnumerable<T> data, int page, int total, Expression<Func<T, object>> identifier, Action<EntityPropertyContainer<T>> properties)
+        public EntityContainer(IEnumerable<T> data, int page, int total,
+            Expression<Func<T, object>> identifier,
+            Action<EntityPropertyContainer<T>> properties)
             : this(data, page, total, false)
         {
             _rows = new List<Entity>();
@@ -40,10 +38,13 @@ namespace MvcAjaxToolkit.Flexigrid.Models
             foreach (var item in data)
             {
                 var item1 = item;
-                IList<string> rowData = dataCollection.ProperyItem.Select(properyItem => properyItem(item1).ToString()).ToList();
+                IList<string> rowData =
+                    dataCollection.ProperyValue
+                    .Select(properyItem => properyItem(item1).ToString()).ToList();
                 // 创建DataList
                 _rows.Add(new Entity(identityDelegate(item).ToString(), rowData));
             }
+            _keys = dataCollection.ProperyKey;
         }
 
         public EntityContainer(IEnumerable<T> data, int page, int total)
@@ -56,17 +57,13 @@ namespace MvcAjaxToolkit.Flexigrid.Models
             _data = data;
             _page = page;
             _total = total;
-
             if (!initializeRows) return;
             _rows = new List<Entity>();
-
             var propertyInfos = typeof(T).GetProperties();
-
             foreach (var item in data)
             {
                 var id = string.Empty;
                 IList<string> cells = new List<string>();
-
                 foreach (var info in propertyInfos)
                 {
                     cells.Add(info.GetValue(item, null).ToString());
@@ -75,34 +72,30 @@ namespace MvcAjaxToolkit.Flexigrid.Models
                         id = cells[0];
                     }
                 }
-
                 _rows.Add(new Entity(id, cells));
             }
         }
-
         #endregion
         public int page
         {
             get
             {
-                return this._page;
+                return _page;
             }
         }
 
         public int total
         {
-            get
-            { 
-                return this._total;
-            }
+            get{ return _total;}
         }
 
         public IList<Entity> rows
         {
-            get
-            {
-                return this._rows;
-            }
+            get{return _rows;}
+        }
+        public IList<string> keys
+        {
+            get { return _keys; }
         }
     }
 }
