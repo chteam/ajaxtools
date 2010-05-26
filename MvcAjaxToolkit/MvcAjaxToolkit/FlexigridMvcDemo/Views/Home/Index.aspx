@@ -3,4 +3,13 @@
 </asp:Content>
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="MainContent">
 
+
+    <script src="../../Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var n = [2, 3, 46, 8];
+    $.removeData(n, 46);
+    var x = new Array();
+    x.slice(
+</script>
 </asp:Content>
