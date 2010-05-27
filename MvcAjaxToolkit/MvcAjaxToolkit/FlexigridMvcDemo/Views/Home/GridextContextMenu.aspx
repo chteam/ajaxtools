@@ -32,10 +32,10 @@
         };
         (function () {
             var cols = [
-              { display: 'Id', name: 'id', width: 40, sortable: true, align: 'center' },
-				{ display: 'User Name', name: 'name', width: 180, sortable: false, align: 'left' },
-				{ display: 'User Email', name: 'email', width: 120, sortable: false, align: 'left' },
-				{ display: 'User Age', name: 'age', width: 130, sortable: false, align: 'left'
+              { display: 'Id', name: 'Id', width: 40, sortable: true, align: 'center' },
+				{ display: 'User Name', name: 'Name', width: 180, sortable: false, align: 'left' },
+				{ display: 'User Email', name: 'Email', width: 120, sortable: false, align: 'left' },
+				{ display: 'User Age', name: 'Age', width: 130, sortable: false, align: 'left'
 				},
 { name: 'numcode',
     process: function (e, c) {

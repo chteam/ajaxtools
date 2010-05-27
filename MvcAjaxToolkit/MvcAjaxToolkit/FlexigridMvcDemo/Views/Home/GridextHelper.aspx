@@ -29,7 +29,7 @@
                    col.Bind(e => e.Name, "Name", 180, true).Align(TextAlignMode.Left);
                    col.Bind(e => e.Email).Width(20).Title("email");
                    col.Bind(e => e.Age).Title("Age").Width(300)
-                       .Template("<span style='color:red'> ${Name} - ${Id} </span>");
+                       .Template("<span style='color:red'> ${name} - ${id} </span>");
                })
             .Title("Employees")
             .SetPageSize(10)

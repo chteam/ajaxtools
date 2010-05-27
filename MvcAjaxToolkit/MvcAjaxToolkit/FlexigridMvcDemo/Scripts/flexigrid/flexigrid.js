@@ -391,7 +391,7 @@
                             tr.id = 'row' + row.id;
                             //
                             for (var i = 0; i < data.keys.length; i++) {
-                                entity[data.keys[i]] = row.cell[i];
+                                entity[data.keys[i].toLowerCase()] = row.cell[i];
                             }
                             //
                             p.rows[row.id] =entity;
@@ -659,23 +659,11 @@
                  return arr;
             },
             getRow: function (key) {
-                //if (key.indexOf("row") >-1 || isNaN(key))
-                var t=key.toString().substr(3);
-                key = key.toString().substr(3);
-                var ret; var ret2 = {};
+                if (key.indexOf("row") >-1 || isNaN(key))
+                    key=key.toString().substr(3);
                 if (g) {
-                    ret = p.rows[key]; 
-                    return ret;
-//                    ret2 = {};
-//                    if (ret) {
-//                        for (var i = 0; i < p.colModel.length; i++) {
-//                            var n = p.colModel[i];
-//                            if (i < ret.length)
-//                                ret2[n.name] = ret[i];
-//                        }
-//                    }
+                    return  p.rows[key]; 
                 }
-//                return ret2;
             },
             addCellProp: function () {
 
@@ -800,7 +788,7 @@
                 if (cm.name && cm.sortable)
                     $(th).attr('abbr', cm.name);
                 if (cm.name)
-                    $(th).attr('cln', cm.name);
+                    $(th).attr('cln', cm.name.toLowerCase());
                 //th.idx = i;
 
                 $(th).attr('axis', 'col' + i);
