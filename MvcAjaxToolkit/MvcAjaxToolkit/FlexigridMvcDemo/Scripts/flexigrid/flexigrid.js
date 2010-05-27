@@ -58,48 +58,38 @@
         }, p);
 
 
-        $(t)
-        .show() //show if hidden
+        $(t).show() //show if hidden
         .attr({ cellPadding: 0, cellSpacing: 0, border: 0 })  //remove padding and spacing
-        .removeAttr('width') //remove width properties	
-        ;
+        .removeAttr('width'); //remove width properties	
 
         //create grid class
         var g = {
             hset: {},
-
             rePosDrag: function () {
-
                 var cdleft = 0 - this.hDiv.scrollLeft;
                 if (this.hDiv.scrollLeft > 0) cdleft -= Math.floor(p.cgwidth / 2);
                 $(g.cDrag).css({ top: g.hDiv.offsetTop + 1 });
                 var cdpad = this.cdpad;
                 $('div', g.cDrag).hide();
-                $('thead tr:first th:visible', this.hDiv).each
-                            (
-                            function () {
-                                var n = $('thead tr:first th:visible', g.hDiv).index(this);
-
-                                var cdpos = parseInt($('div', this).width());
-                                var ppos = cdpos;
-                                if (cdleft == 0)
-                                    cdleft -= Math.floor(p.cgwidth / 2);
-                                cdpos = cdpos + cdleft + cdpad;
-                                $('div:eq(' + n + ')', g.cDrag).css({ 'left': cdpos + 'px' }).show();
-                                cdleft = cdpos;
-                            }
-                            );
+                $('thead tr:first th:visible', this.hDiv).each(function () {
+                    var n = $('thead tr:first th:visible', g.hDiv).index(this);
+                    var cdpos = parseInt($('div', this).width());
+                    var ppos = cdpos;
+                    if (cdleft == 0)
+                        cdleft -= Math.floor(p.cgwidth / 2);
+                    cdpos = cdpos + cdleft + cdpad;
+                    $('div:eq(' + n + ')', g.cDrag).css({ 'left': cdpos + 'px' }).show();
+                    cdleft = cdpos;
+                });
 
             },
             fixHeight: function (newH) {
                 newH = false;
                 if (!newH) newH = $(g.bDiv).height();
                 var hdHeight = $(this.hDiv).height();
-                $('div', this.cDrag).each(
-                                        function () {
-                                            $(this).height(newH + hdHeight);
-                                        }
-                                    );
+                $('div', this.cDrag).each(function () {
+                    $(this).height(newH + hdHeight);
+                });
 
                 var nd = parseInt($(g.nDiv).height());
 
@@ -221,13 +211,10 @@
                 if (this.colresize) {
                     var n = this.colresize.n;
                     var nw = this.colresize.nw;
-
                     $('th:visible div:eq(' + n + ')', this.hDiv).css('width', nw);
-                    $('tr', this.bDiv).each(
-                                                    function () {
-                                                        $('td:visible div:eq(' + n + ')', this).css('width', nw);
-                                                    }
-                                            );
+                    $('tr', this.bDiv).each(function () {
+                        $('td:visible div:eq(' + n + ')', this).css('width', nw);
+                    });
                     this.hDiv.scrollLeft = this.bDiv.scrollLeft;
                     $('div:eq(' + n + ')', this.cDrag).siblings().show();
                     $('.dragging', this.cDrag).removeClass('dragging');
@@ -241,23 +228,16 @@
                 else if (this.colCopy) {
                     $(this.colCopy).remove();
                     if (this.dcolt != null) {
-
                         if (this.dcoln > this.dcolt)
-
                             $('th:eq(' + this.dcolt + ')', this.hDiv).before(this.dcol);
                         else
                             $('th:eq(' + this.dcolt + ')', this.hDiv).after(this.dcol);
-
-
-
                         this.switchCol(this.dcoln, this.dcolt);
                         $(this.cdropleft).remove();
                         $(this.cdropright).remove();
                         this.rePosDrag();
-
                         if (p.onDragCol) p.onDragCol(this.dcoln, this.dcolt);
                     }
-
                     this.dcol = null;
                     this.hset = null;
                     this.dcoln = null;
@@ -276,12 +256,9 @@
                 var n = $('thead th', g.hDiv).index(ncol);
                 var cb = $('input[value=' + cid + ']', g.nDiv)[0];
 
-
                 if (visible == null) {
                     visible = ncol.hide;
                 }
-
-
 
                 if ($('input:checked', g.nDiv).length < p.minColToggle && !visible) return false;
 
@@ -296,15 +273,12 @@
                     cb.checked = false;
                 }
 
-                $('tbody tr', t).each
-                							(
-                								function () {
-                								    if (visible)
-                								        $('td:eq(' + n + ')', this).show();
-                								    else
-                								        $('td:eq(' + n + ')', this).hide();
-                								}
-                							);
+                $('tbody tr', t).each(function () {
+                    if (visible)
+                        $('td:eq(' + n + ')', this).show();
+                    else
+                        $('td:eq(' + n + ')', this).hide();
+                });
 
                 this.rePosDrag();
 
@@ -314,15 +288,12 @@
             },
             switchCol: function (cdrag, cdrop) { //switch columns
 
-                $('tbody tr', t).each
-                                (
-                                    function () {
-                                        if (cdrag > cdrop)
-                                            $('td:eq(' + cdrop + ')', this).before($('td:eq(' + cdrag + ')', this));
-                                        else
-                                            $('td:eq(' + cdrop + ')', this).after($('td:eq(' + cdrag + ')', this));
-                                    }
-                                );
+                $('tbody tr', t).each(function () {
+                    if (cdrag > cdrop)
+                        $('td:eq(' + cdrop + ')', this).before($('td:eq(' + cdrag + ')', this));
+                    else
+                        $('td:eq(' + cdrop + ')', this).after($('td:eq(' + cdrag + ')', this));
+                });
 
                 //switch order in nDiv
                 if (cdrag > cdrop)
@@ -715,56 +686,38 @@
             },
 
             addRowProp: function () {
-                $('tbody tr', g.bDiv).each
-                    (
-                        function () {
-                            $(this)
-                            .click(
-                                function (e) {
-                                    var obj = (e.target || e.srcElement); if (obj.href || obj.type) return true;
-                                    $(this).toggleClass('trSelected');
-                                    if (!p.mulitSelect)
-                                        $(this).siblings().removeClass('trSelected');
-                                }
-                            )
-                            .mousedown(
-                                function (e) {
-                                    if (e.shiftKey) {
-                                        $(this).toggleClass('trSelected');
-                                        g.multisel = true;
-                                        this.focus();
-                                        $(g.gDiv).noSelect();
-                                    }
-                                }
-                            )
-                            .mouseup(
-                                function () {
-                                    if (g.multisel) {
-                                        g.multisel = false;
-                                        $(g.gDiv).noSelect(false);
-                                    }
-                                }
-                            )
-                            .hover(
-                                function (e) {
-                                    if (g.multisel) {
-                                        $(this).toggleClass('trSelected');
-                                    }
-                                },
-                                function () { }
-                            )
-                            ;
+                $('tbody tr', g.bDiv).each(function () {
+                    $(this).click(function (e) {
+                        var obj = (e.target || e.srcElement); if (obj.href || obj.type) return true;
+                        $(this).toggleClass('trSelected');
+                        if (!p.mulitSelect)
+                            $(this).siblings().removeClass('trSelected');
+                    }).mousedown(function (e) {
+                        if (e.shiftKey) {
+                            $(this).toggleClass('trSelected');
+                            g.multisel = true;
+                            this.focus();
+                            $(g.gDiv).noSelect();
+                        }
+                    }).mouseup(function () {
+                        if (g.multisel) {
+                            g.multisel = false;
+                            $(g.gDiv).noSelect(false);
+                        }
+                    }).hover(function (e) {
+                        if (g.multisel) {
+                            $(this).toggleClass('trSelected');
+                        }
+                    }, function () {
+                    });
 
-                            if ($.browser.msie && $.browser.version < 7.0) {
-                                $(this)
-                                    .hover(
+                    if ($.browser.msie && $.browser.version < 7.0) {
+                        $(this).hover(
                                         function () { $(this).addClass('trOver'); },
                                         function () { $(this).removeClass('trOver'); }
-                                    )
-                                    ;
-                            }
-                        }
-                    );
+                                    );
+                    }
+                });
 
 
             },
@@ -901,114 +854,103 @@
         if (!p.colmodel) var ci = 0;
 
         //setup thead			
-        $('thead tr:first th', g.hDiv).each
-            (
-                function () {
-                    var thdiv = document.createElement('div');
-                    if ($(this).attr('abbr')) {
-                        $(this).click(
-                                function (e) {
+        $('thead tr:first th', g.hDiv).each(function () {
+            var thdiv = document.createElement('div');
+            if ($(this).attr('abbr')) {
+                $(this).click(function (e) {
+                    if (!$(this).hasClass('thOver')) return false;
+                    var obj = (e.target || e.srcElement);
+                    if (obj.href || obj.type) return true;
+                    g.changeSort(this);
+                });
+                if ($(this).attr('abbr') == p.sortname) {
+                    this.className = 'sorted';
+                    thdiv.className = 's' + p.sortorder;
+                }
+            }
 
-                                    if (!$(this).hasClass('thOver')) return false;
-                                    var obj = (e.target || e.srcElement);
-                                    if (obj.href || obj.type) return true;
-                                    g.changeSort(this);
-                                });
+            if (this.hide) $(this).hide();
+            if (!p.colmodel) {
+                $(this).attr('axis', 'col' + ci++);
+            }
 
-                        if ($(this).attr('abbr') == p.sortname) {
-                            this.className = 'sorted';
-                            thdiv.className = 's' + p.sortorder;
-                        }
-                    }
+            $(thdiv).css({ textAlign: this.align });
+            if (this.width) {
+                $(thdiv).css({ width: this.width + 'px' });
+            }
+            thdiv.innerHTML = this.innerHTML;
 
-                    if (this.hide) $(this).hide();
-
-                    if (!p.colmodel) {
-                        $(this).attr('axis', 'col' + ci++);
-                    }
-
-
-                    $(thdiv).css({ textAlign: this.align });
-                    if (this.width) {
-                        $(thdiv).css({ width: this.width + 'px' });
-                    }
-                    thdiv.innerHTML = this.innerHTML;
-
-                    $(this).empty().append(thdiv).removeAttr('width')
+            $(this).empty().append(thdiv).removeAttr('width')
                         .mousedown(function (e) {
                             g.dragStart('colMove', e, this);
-                        }).hover(
-                            function () {
-                                if (!g.colresize && !$(this).hasClass('thMove') && !g.colCopy) $(this).addClass('thOver');
+                        }).hover(function () {
+                            if (!g.colresize && !$(this).hasClass('thMove') && !g.colCopy) $(this).addClass('thOver');
 
-                                if ($(this).attr('abbr') != p.sortname && !g.colCopy && !g.colresize && $(this).attr('abbr')) $('div', this).addClass('s' + p.sortorder);
-                                else if ($(this).attr('abbr') == p.sortname && !g.colCopy && !g.colresize && $(this).attr('abbr')) {
-                                    var no = '';
-                                    if (p.sortorder == 'asc') no = 'desc';
-                                    else no = 'asc';
-                                    $('div', this).removeClass('s' + p.sortorder).addClass('s' + no);
-                                }
+                            if ($(this).attr('abbr') != p.sortname && !g.colCopy && !g.colresize && $(this).attr('abbr')) $('div', this).addClass('s' + p.sortorder);
+                            else if ($(this).attr('abbr') == p.sortname && !g.colCopy && !g.colresize && $(this).attr('abbr')) {
+                                var no = '';
+                                if (p.sortorder == 'asc') no = 'desc';
+                                else no = 'asc';
+                                $('div', this).removeClass('s' + p.sortorder).addClass('s' + no);
+                            }
 
-                                if (g.colCopy) {
-                                    var n = $('th', g.hDiv).index(this);
+                            if (g.colCopy) {
+                                var n = $('th', g.hDiv).index(this);
 
-                                    if (n == g.dcoln) return false;
+                                if (n == g.dcoln) return false;
 
-                                    if (n < g.dcoln) $(this).append(g.cdropleft);
-                                    else $(this).append(g.cdropright);
+                                if (n < g.dcoln) $(this).append(g.cdropleft);
+                                else $(this).append(g.cdropright);
 
-                                    g.dcolt = n;
+                                g.dcolt = n;
 
-                                } else if (!g.colresize) {
+                            } else if (!g.colresize) {
 
-                                    var nv = $('th:visible', g.hDiv).index(this);
-                                    var onl = parseInt($('div:eq(' + nv + ')', g.cDrag).css('left'));
-                                    var nw = jQuery(g.nBtn).outerWidth();
+                                var nv = $('th:visible', g.hDiv).index(this);
+                                var onl = parseInt($('div:eq(' + nv + ')', g.cDrag).css('left'));
+                                var nw = jQuery(g.nBtn).outerWidth();
 
 
-                                    nl = onl - nw + Math.floor(p.cgwidth / 2);
+                                nl = onl - nw + Math.floor(p.cgwidth / 2);
 
-                                    $(g.nDiv).hide();
-                                    $(g.nBtn).hide();
+                                $(g.nDiv).hide();
+                                $(g.nBtn).hide();
 
-                                    $(g.nBtn).css({ 'left': nl, top: g.hDiv.offsetTop }).show();
+                                $(g.nBtn).css({ 'left': nl, top: g.hDiv.offsetTop }).show();
 
-                                    var ndw = parseInt($(g.nDiv).width());
+                                var ndw = parseInt($(g.nDiv).width());
 
-                                    $(g.nDiv).css({ top: g.bDiv.offsetTop });
+                                $(g.nDiv).css({ top: g.bDiv.offsetTop });
 
-                                    if ((nl + ndw) > $(g.gDiv).width())
-                                        $(g.nDiv).css('left', onl - ndw + 1);
-                                    else
-                                        $(g.nDiv).css('left', nl);
+                                if ((nl + ndw) > $(g.gDiv).width())
+                                    $(g.nDiv).css('left', onl - ndw + 1);
+                                else
+                                    $(g.nDiv).css('left', nl);
 
-                                    if ($(this).hasClass('sorted'))
-                                        $(g.nBtn).addClass('srtd');
-                                    else
-                                        $(g.nBtn).removeClass('srtd');
+                                if ($(this).hasClass('sorted'))
+                                    $(g.nBtn).addClass('srtd');
+                                else
+                                    $(g.nBtn).removeClass('srtd');
 
-                                }
+                            }
 
-                            },
-                            function () {
-                                $(this).removeClass('thOver');
-                                if ($(this).attr('abbr') != p.sortname) $('div', this).removeClass('s' + p.sortorder);
-                                else if ($(this).attr('abbr') == p.sortname) {
-                                    var no = '';
-                                    if (p.sortorder == 'asc') no = 'desc';
-                                    else no = 'asc';
+                        }, function () {
+                            $(this).removeClass('thOver');
+                            if ($(this).attr('abbr') != p.sortname) $('div', this).removeClass('s' + p.sortorder);
+                            else if ($(this).attr('abbr') == p.sortname) {
+                                var no = '';
+                                if (p.sortorder == 'asc') no = 'desc';
+                                else no = 'asc';
 
-                                    $('div', this).addClass('s' + p.sortorder).removeClass('s' + no);
-                                }
-                                if (g.colCopy) {
-                                    $(g.cdropleft).remove();
-                                    $(g.cdropright).remove();
-                                    g.dcolt = null;
-                                }
-                            })
-                        ; //wrap content
-                }
-            );
+                                $('div', this).addClass('s' + p.sortorder).removeClass('s' + no);
+                            }
+                            if (g.colCopy) {
+                                $(g.cdropleft).remove();
+                                $(g.cdropright).remove();
+                                g.dcolt = null;
+                            }
+                        }); //wrap content
+        });
 
         //set bDiv
         g.bDiv.className = 'bDiv';
@@ -1060,33 +1002,22 @@
 
             $(g.cDrag).css({ top: -hdheight + 'px' });
 
-            $('thead tr:first th', g.hDiv).each
-            (
-                function () {
-                    var cgDiv = document.createElement('div');
-
-                    $(g.cDrag).append(cgDiv);
-                    if (!p.cgwidth) p.cgwidth = $(cgDiv).width();
-                    $(cgDiv).css({ height: cdheight + hdheight })
-
-                     .mousedown(function (e) { g.dragStart('colresize', e, this); })
-                        ;
-                    if ($.browser.msie && $.browser.version < 7.0) {
-                        g.fixHeight($(g.gDiv).height());
-                        $(cgDiv).hover(
-                                function () {
-                                    g.fixHeight();
-
-                                    $(this).addClass('dragging')
-                                },
-                                function () {
-
-                                    if (!g.colresize) $(this).removeClass('dragging')
-                                }
-                            );
-                    }
+            $('thead tr:first th', g.hDiv).each(function () {
+                var cgDiv = document.createElement('div');
+                $(g.cDrag).append(cgDiv);
+                if (!p.cgwidth) p.cgwidth = $(cgDiv).width();
+                $(cgDiv).css({ height: cdheight + hdheight })
+                     .mousedown(function (e) { g.dragStart('colresize', e, this); });
+                if ($.browser.msie && $.browser.version < 7.0) {
+                    g.fixHeight($(g.gDiv).height());
+                    $(cgDiv).hover(function () {
+                        g.fixHeight();
+                        $(this).addClass('dragging')
+                    }, function () {
+                        if (!g.colresize) $(this).removeClass('dragging')
+                    });
                 }
-            );
+            });
 
             //g.rePosDrag();
 
@@ -1094,25 +1025,16 @@
         //add strip		
         if (p.striped)
             $('tbody tr:odd', g.bDiv).addClass('erow');
-
-
         if (p.resizable && p.height != 'auto') {
             g.vDiv.className = 'vGrip';
-            $(g.vDiv)
-
-             .mousedown(function (e) { g.dragStart('vresize', e) })
-        .html('<span></span>');
+            $(g.vDiv).mousedown(function (e) { g.dragStart('vresize', e) }).html('<span></span>');
             $(g.bDiv).after(g.vDiv);
         }
 
         if (p.resizable && p.width != 'auto' && !p.nohresize) {
             g.rDiv.className = 'hGrip';
-            $(g.rDiv)
-
-              .mousedown(function (e) { g.dragStart('vresize', e, true); })
-        .html('<span></span>')
-        .css('height', $(g.gDiv).height())
-        ;
+            $(g.rDiv).mousedown(function (e) { g.dragStart('vresize', e, true); })
+        .html('<span></span>').css('height', $(g.gDiv).height());
             if ($.browser.msie && $.browser.version < 7.0) {
                 $(g.rDiv).hover(function () { $(this).addClass('hgOver'); }, function () { $(this).removeClass('hgOver'); });
             }
@@ -1145,17 +1067,15 @@
                     opt += "<option value='" + p.rpOptions[nx] + "' " + sel + " >" + p.rpOptions[nx] + "&nbsp;&nbsp;</option>";
                 };
                 $('.pDiv2', g.pDiv).prepend("<div class='pGroup'><select name='rp'>" + opt + "</select></div> <div class='btnseparator'></div>");
-                $('select', g.pDiv).change(
-                    function () {
-                        if (p.onRpChange)
-                            p.onRpChange(+this.value);
-                        else {
-                            p.newp = 1;
-                            p.rp = +this.value;
-                            g.populate();
-                        }
+                $('select', g.pDiv).change(function () {
+                    if (p.onRpChange)
+                        p.onRpChange(+this.value);
+                    else {
+                        p.newp = 1;
+                        p.rp = +this.value;
+                        g.populate();
                     }
-                );
+                });
             }
 
             //add search button
@@ -1196,13 +1116,10 @@
             $(g.gDiv).prepend(g.mDiv);
             if (p.showTableToggleBtn) {
                 $(g.mDiv).append('<div class="ptogtitle" title="Minimize/Maximize Table"><span></span></div>');
-                $('div.ptogtitle', g.mDiv).click
-                    (
-                        function () {
-                            $(g.gDiv).toggleClass('hideBody');
-                            $(this).toggleClass('vsble');
-                        }
-                    );
+                $('div.ptogtitle', g.mDiv).click(function () {
+                    $(g.gDiv).toggleClass('hideBody');
+                    $(this).toggleClass('vsble');
+                });
             }
             //g.rePosDrag();
         }
@@ -1258,29 +1175,22 @@
             });
 
             if ($.browser.msie && $.browser.version < 7.0)
-                $('tr', g.nDiv).hover
-                (
+                $('tr', g.nDiv).hover(
                     function () { $(this).addClass('ndcolover'); },
                     function () { $(this).removeClass('ndcolover'); }
                 );
 
-            $('td.ndcol2', g.nDiv).click
-            			(
-            			 	function () {
-            			 	    if ($('input:checked', g.nDiv).length <= p.minColToggle && $(this).prev().find('input')[0].checked) return false;
-            			 	    return g.toggleCol($(this).prev().find('input').val());
-            			 	}
-            			);
+            $('td.ndcol2', g.nDiv).click(function () {
+                if ($('input:checked', g.nDiv).length <= p.minColToggle && $(this).prev().find('input')[0].checked) return false;
+                return g.toggleCol($(this).prev().find('input').val());
+            });
 
-            $('input.togCol', g.nDiv).click
-           			(
-           			 	function () {
+            $('input.togCol', g.nDiv).click(function () {
 
-           			 	    if ($('input:checked', g.nDiv).length < p.minColToggle && this.checked == false) return false;
-           			 	    $(this).parent().next().trigger('click');
-           			 	    //return false;
-           			 	}
-            			);
+                if ($('input:checked', g.nDiv).length < p.minColToggle && this.checked == false) return false;
+                $(this).parent().next().trigger('click');
+                //return false;
+            });
 
 
             $(g.gDiv).prepend(g.nDiv);
@@ -1288,12 +1198,9 @@
             $(g.nBtn).addClass('nBtn')
             .html('<div></div>')
             .attr('title', 'Hide/Show Columns')
-            .click
-            (
-            function () {
+            .click(function () {
                 $(g.nDiv).toggle(); return true;
-            }
-            );
+            });
 
             if (p.showToggleBtn) $(g.gDiv).prepend(g.nBtn);
         }
@@ -1324,8 +1231,7 @@
         $(document)
          .mousemove(function (e) { g.dragMove(e) })
           .mouseup(function (e) { g.dragEnd() })
-          .hover(function () { }, function () { g.dragEnd() })
-           ;
+          .hover(function () { }, function () { g.dragEnd() });
 
         //browser adjustments
         if ($.browser.msie && $.browser.version < 7.0) {
@@ -1359,12 +1265,7 @@
             if (!docloaded) {
                 $(this).hide();
                 var t = this;
-                $(document).ready
-                    (
-                        function () {
-                            $.addFlex(t, p);
-                        }
-                    );
+                $(document).ready(function () { $.addFlex(t, p); });
             } else {
                 $.addFlex(this, p);
             }
@@ -1396,11 +1297,9 @@
         return ret;
     };
     $.fn.flexToggleCol = function (cid, visible) { // function to reload grid
-
         return this.each(function () {
             if (this.grid) this.grid.toggleCol(cid, visible);
         });
-
     };
 
     $.fn.flexAddData = function (data) { // function to add data to grid
