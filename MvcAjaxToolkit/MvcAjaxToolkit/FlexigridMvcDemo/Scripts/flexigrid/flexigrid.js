@@ -138,7 +138,6 @@
                         $('body').css('cursor', 'col-resize');
                     }
                     this.vresize = { h: p.height, sy: e.pageY, w: p.width, sx: e.pageX, hgo: hgo };
-
                 }
 
                 else if (dragtype == 'colMove' && p.colMove) //column header drag
@@ -157,8 +156,6 @@
                     if ($.browser.msie) {
                         this.colCopy.className = "colCopy ie";
                     }
-
-
                     $(this.colCopy).css({ position: 'absolute', float: 'left', display: 'none', textAlign: obj.align });
                     $('body').append(this.colCopy);
                     $(this.cDrag).hide();
