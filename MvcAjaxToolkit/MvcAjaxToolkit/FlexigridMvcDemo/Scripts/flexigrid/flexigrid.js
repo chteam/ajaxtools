@@ -394,7 +394,7 @@
                                 entity[data.keys[i]] = row.cell[i];
                             }
                             //
-                            p.rows[tr.id] = row.id;
+                            p.rows[row.id] =entity;
                         }
 
                          //add cell
@@ -402,7 +402,7 @@
                                     var td = document.createElement('td');
                                     var idx = $(this).attr('axis').substr(3);
                                     td.align = this.align;
-                                    var n= $(this).attr('abbr').substr(3);//add
+                                    var n= $(this).attr('cln');//add
                                     //td.innerHTML = row.cell[idx];
                                     td.innerHTML=entity[n];
                                     $(tr).append(td);
@@ -664,17 +664,18 @@
                 key = key.toString().substr(3);
                 var ret; var ret2 = {};
                 if (g) {
-                    ret = p.rows[key];
-                    ret2 = {};
-                    if (ret) {
-                        for (var i = 0; i < p.colModel.length; i++) {
-                            var n = p.colModel[i];
-                            if (i < ret.length)
-                                ret2[n.name] = ret[i];
-                        }
-                    }
+                    ret = p.rows[key]; 
+                    return ret;
+//                    ret2 = {};
+//                    if (ret) {
+//                        for (var i = 0; i < p.colModel.length; i++) {
+//                            var n = p.colModel[i];
+//                            if (i < ret.length)
+//                                ret2[n.name] = ret[i];
+//                        }
+//                    }
                 }
-                return ret2;
+//                return ret2;
             },
             addCellProp: function () {
 
@@ -798,7 +799,8 @@
 
                 if (cm.name && cm.sortable)
                     $(th).attr('abbr', cm.name);
-
+                if (cm.name)
+                    $(th).attr('cln', cm.name);
                 //th.idx = i;
 
                 $(th).attr('axis', 'col' + i);
