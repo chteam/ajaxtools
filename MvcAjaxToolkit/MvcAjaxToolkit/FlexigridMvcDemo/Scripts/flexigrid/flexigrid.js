@@ -47,14 +47,14 @@
             //showToggleBtn: false, //show or hide column toggle popup
             hideOnSubmit: true,
             //autoload: false,
-            blockOpacity: 0.5,
+            blockOpacity: 0.5
             //onDragCol: false,
             //onToggleCol: false,
             //onChangeSort: false,
             //onSuccess: false,
             //onError: false,
-           // onSubmit: false // using a custom populate function
-          // , mulitSelect: false
+            // onSubmit: false // using a custom populate function
+            // , mulitSelect: false
         }, p);
 
 
@@ -382,8 +382,8 @@
                 var tbody = document.createElement('tbody');
 
                 if (p.dataType == 'json') {
-                    var colns=this.getColNames();
-                    $.each(data.rows,function (i, row) {
+                    var colns = this.getColNames();
+                    $.each(data.rows, function (i, row) {
                         var tr = document.createElement('tr');
                         if (i % 2 && p.striped) tr.className = 'erow';
                         var entity = {};
@@ -394,89 +394,89 @@
                                 entity[data.keys[i].toLowerCase()] = row.cell[i];
                             }
                             //
-                            p.rows[row.id] =entity;
+                            p.rows[row.id] = entity;
                         }
 
-                         //add cell
-                         $('thead tr:first th', g.hDiv).each(function () {
-                                    var td = document.createElement('td');
-                                    var idx = $(this).attr('axis').substr(3);
-                                    td.align = this.align;
-                                    var n= $(this).attr('cln');//add
-                                    //td.innerHTML = row.cell[idx];
-                                    td.innerHTML=entity[n];
-                                    $(tr).append(td);
-                                    td = null;
-                                });
+                        //add cell
+                        $('thead tr:first th', g.hDiv).each(function () {
+                            var td = document.createElement('td');
+                            var idx = $(this).attr('axis').substr(3);
+                            td.align = this.align;
+                            var n = $(this).attr('cln'); //add
+                            //td.innerHTML = row.cell[idx];
+                            td.innerHTML = entity[n];
+                            $(tr).append(td);
+                            td = null;
+                        });
 
 
-                         if ($('thead', this.gDiv).length < 1) //handle if grid has no headers
-                         {
-                             for (idx = 0; idx < cell.length; idx++) {
-                                 var td = document.createElement('td');
-                                 td.innerHTML = row.cell[idx];
-                                 $(tr).append(td);
-                                 td = null;
-                             }
-                          }
+                        if ($('thead', this.gDiv).length < 1) //handle if grid has no headers
+                        {
+                            for (idx = 0; idx < cell.length; idx++) {
+                                var td = document.createElement('td');
+                                td.innerHTML = row.cell[idx];
+                                $(tr).append(td);
+                                td = null;
+                            }
+                        }
 
-                         $(tbody).append(tr);
-                         tr = null;
-                     });
+                        $(tbody).append(tr);
+                        tr = null;
+                    });
 
                 } else if (p.dataType == 'xml') {
                     alert('didn\'t supports xml')
-//                    i = 1;
+                    //                    i = 1;
 
-//                    $("rows row", data).each
-//                (
+                    //                    $("rows row", data).each
+                    //                (
 
-//                    function () {
-//                        i++;
+                    //                    function () {
+                    //                        i++;
 
-//                        var tr = document.createElement('tr');
-//                        if (i % 2 && p.striped) tr.className = 'erow';
+                    //                        var tr = document.createElement('tr');
+                    //                        if (i % 2 && p.striped) tr.className = 'erow';
 
-//                        var nid = $(this).attr('id');
-//                        if (nid) tr.id = 'row' + nid;
+                    //                        var nid = $(this).attr('id');
+                    //                        if (nid) tr.id = 'row' + nid;
 
-//                        nid = null;
+                    //                        nid = null;
 
-//                        var robj = this;
-
-
-
-//                        $('thead tr:first th', g.hDiv).each
-//                            (
-//                                function () {
-//                                    var td = document.createElement('td');
-//                                    var idx = $(this).attr('axis').substr(3);
-//                                    td.align = this.align;
-//                                    td.innerHTML = $("cell:eq(" + idx + ")", robj).text();
-//                                    $(tr).append(td);
-//                                    td = null;
-//                                }
-//                            );
+                    //                        var robj = this;
 
 
-//                        if ($('thead', this.gDiv).length < 1) //handle if grid has no headers
-//                        {
-//                            $('cell', this).each
-//                                (
-//                                    function () {
-//                                        var td = document.createElement('td');
-//                                        td.innerHTML = $(this).text();
-//                                        $(tr).append(td);
-//                                        td = null;
-//                                    }
-//                                );
-//                        }
 
-//                        $(tbody).append(tr);
-//                        tr = null;
-//                        robj = null;
-//                    }
-//                );
+                    //                        $('thead tr:first th', g.hDiv).each
+                    //                            (
+                    //                                function () {
+                    //                                    var td = document.createElement('td');
+                    //                                    var idx = $(this).attr('axis').substr(3);
+                    //                                    td.align = this.align;
+                    //                                    td.innerHTML = $("cell:eq(" + idx + ")", robj).text();
+                    //                                    $(tr).append(td);
+                    //                                    td = null;
+                    //                                }
+                    //                            );
+
+
+                    //                        if ($('thead', this.gDiv).length < 1) //handle if grid has no headers
+                    //                        {
+                    //                            $('cell', this).each
+                    //                                (
+                    //                                    function () {
+                    //                                        var td = document.createElement('td');
+                    //                                        td.innerHTML = $(this).text();
+                    //                                        $(tr).append(td);
+                    //                                        td = null;
+                    //                                    }
+                    //                                );
+                    //                        }
+
+                    //                        $(tbody).append(tr);
+                    //                        tr = null;
+                    //                        robj = null;
+                    //                    }
+                    //                );
 
                 }
 
@@ -597,12 +597,12 @@
                 if (!p.newp || p.newp < 1) p.newp = 1;
 
                 if (p.page > p.pages) p.page = p.pages;
-                var param = { 
-                    'page': p.newp, 
-                    'rp': p.rp, 
+                var param = {
+                    'page': p.newp,
+                    'rp': p.rp,
                     'sortname': p.sortname,
-                    'sortorder': p.sortorder 
-                 };
+                    'sortorder': p.sortorder
+                };
                 if (p.params) {
                     //                    for (var pi = 0; pi < p.params.length; pi++)
                     //                        param[param.length] = p.params[pi];
@@ -652,17 +652,17 @@
                     this.populate();
 
             },
-            getColNames:function(){
-                 var arr=new Array();
-                  for (var i = 0; i < p.colModel.length; i++)
-                               arr.push( p.colModel[i].name);
-                 return arr;
+            getColNames: function () {
+                var arr = new Array();
+                for (var i = 0; i < p.colModel.length; i++)
+                    arr.push(p.colModel[i].name);
+                return arr;
             },
             getRow: function (key) {
-                if (key.indexOf("row") >-1 || isNaN(key))
-                    key=key.toString().substr(3);
+                if (key.indexOf("row") > -1 || isNaN(key))
+                    key = key.toString().substr(3);
                 if (g) {
-                    return  p.rows[key]; 
+                    return p.rows[key];
                 }
             },
             addCellProp: function () {
@@ -1020,7 +1020,7 @@
         .css({ height: (!p.height || p.height == 'auto') ? 'auto' : p.height + "px"
         })
         .append(t);
-
+        if (!p.height) p.height = 'auto';
         if (p.height == 'auto') {
             $('table', g.bDiv).addClass('autoht');
             if ($.browser.msie && $.browser.version == 7.0) {
@@ -1252,13 +1252,13 @@
 
 
             $('th div', g.hDiv).each(function () {
-            			 	    var kcol = $("th[axis='col" + cn + "']", g.hDiv)[0];
-            			 	    var chk = 'checked="checked"';
-            			 	    if (kcol.style.display == 'none') chk = '';
+                var kcol = $("th[axis='col" + cn + "']", g.hDiv)[0];
+                var chk = 'checked="checked"';
+                if (kcol.style.display == 'none') chk = '';
 
-            			 	    $('tbody', g.nDiv).append('<tr><td class="ndcol1"><input type="checkbox" ' + chk + ' class="togCol" value="' + cn + '" /></td><td class="ndcol2">' + this.innerHTML + '</td></tr>');
-            			 	    cn++;
-            			 	});
+                $('tbody', g.nDiv).append('<tr><td class="ndcol1"><input type="checkbox" ' + chk + ' class="togCol" value="' + cn + '" /></td><td class="ndcol2">' + this.innerHTML + '</td></tr>');
+                cn++;
+            });
 
             if ($.browser.msie && $.browser.version < 7.0)
                 $('tr', g.nDiv).hover
@@ -1385,7 +1385,7 @@
             if (this.grid) $.extend(this.p, p);
         });
 
-    }; 
+    };
     $.fn.flexGetPage = function (page, data) {
         return this.flexOptions({ newp: page, params: data }).flexReload();
     };
