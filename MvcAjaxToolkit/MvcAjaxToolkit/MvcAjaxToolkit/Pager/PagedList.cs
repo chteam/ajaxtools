@@ -31,24 +31,10 @@ namespace MvcAjaxToolkit.Pager
         }
 
         public int CurrentPage { get; set; }
-
-        public bool HasPreviousPage
-        {
-            get { return CurrentPage > 1; }
-        }
-
-        public bool HasNextPage
-        {
-            get { return CurrentPage < TotalPages; }
-        }
-
+        public bool HasPreviousPage { get { return CurrentPage > 1; } }
+        public bool HasNextPage { get { return CurrentPage < TotalPages; } }
         public int PageSize { get; set; }
-
         public int TotalCount { get; set; }
-
-        public int TotalPages
-        {
-            get { return Math.Max((TotalCount + PageSize - 1) / PageSize, 1); }
-        }
+        public int TotalPages { get { return Math.Max((TotalCount + PageSize - 1) / PageSize, 1); } }
     }
 }
