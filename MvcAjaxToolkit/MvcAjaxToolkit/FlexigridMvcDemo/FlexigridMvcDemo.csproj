@@ -104,6 +104,8 @@
     <Content Include="Content\flexigrid\images\up.png" />
     <Content Include="Content\flexigrid\images\uup.png" />
     <Content Include="Content\flexigrid\images\wbg.gif" />
+    <Content Include="demo.html" />
+    <Content Include="getentity.txt" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\flexigrid\flexigrid.js" />
