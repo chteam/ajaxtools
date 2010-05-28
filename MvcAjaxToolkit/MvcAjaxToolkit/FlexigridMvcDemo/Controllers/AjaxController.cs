@@ -40,11 +40,8 @@ namespace FlexigridMvcDemo.Controllers
             using (var t1 = new TEST1Entities())
             {
                 var list1 = t1.UserInfo.OrderBy(c => c.Id);
-                //var t = (list1 as ObjectQuery).ToTraceString();
                 var list = list1.Pager(page ?? 1, rp ?? 10);
-                //    var t = new PagedList<object[]>(list.Select(), page??1, 10, list.TotalCount);
                 json = list;
-                //.ToFlexigridObject(c => new object[] { c.Id, c.Name.Substring(1), c.Email, c.Age });
             }
             var data = json.ToFlexigridObject(c => c.Id, 
                 x => x.Add(c => c.Id)
@@ -52,7 +49,7 @@ namespace FlexigridMvcDemo.Controllers
                          .Add(c => c.Name)
                          .Add(c => c.Age)
                          .Add(c => 1));
-            return Json(data);
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Remove(int id)
         {
