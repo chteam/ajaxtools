@@ -21,7 +21,7 @@
                 { display: 'ÄêÁä', name: 'Age', width: 130, sortable: false, align: 'left'},
                 { display: 'ÄêÁä', name: 'name', width: 130, sortable: false, align: 'left'}
                 ];
-            $("#flex1").gridext('<%=Url.Action("GetEntity","Ajax") %>', cols, null, null,
+            $("#flex1").gridext('<%=Url.Action("Index","Ajax") %>', cols, null, null,
 			 { usedefalutpager: false, rp: 10, autoload: true, colResize: true, colMove: true, pager: "#pager" }); ;
         })();
     </script>

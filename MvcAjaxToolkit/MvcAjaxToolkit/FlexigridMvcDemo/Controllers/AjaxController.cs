@@ -13,7 +13,7 @@ namespace FlexigridMvcDemo.Controllers
     {
         //
         // GET: /Ajax/
-    
+
 
         public ActionResult Index(int? page, int? rp, string sortname, string sortorder)
         {
@@ -27,12 +27,12 @@ namespace FlexigridMvcDemo.Controllers
             var pager = ds.Tables[0].AsEnumerable().Pager(page ?? 1, rp ?? 20);
 
             var json = pager.ToList().ToFlexigridObject(page ?? 1, pager.TotalCount,
-                
-                c => c["id"], x => x.Add(t => t["id"])
-                                                                                                            .Add(c => c["email"])
-                                                                                                            .Add(c => c["name"])
-                                                                                                            .Add(c => c["age"]));
-            return Json(json);
+
+                c => c["id"], x => x.Add("id", t => t["id"])
+                    .Add("email", c => c["email"])                    
+                    .Add("name", c => c["name"])
+                    .Add("age", c => c["age"]));
+            return Json(json,JsonRequestBehavior.AllowGet);
         }
         public ActionResult GetEntity(int? page, int? rp, string sortname, string sortorder)
         {
