@@ -347,12 +347,13 @@
                 this.buildpager();
                 p.rows = {};
                 //build new body
-                var tbody = document.createElement('tbody');
+                var tbody = $('<tbody>')[0];
 
                 if (p.dataType == 'json') {
                     var colns = this.getColNames();
                     $.each(data.rows, function (i, row) {
-                        var tr = document.createElement('tr');
+                        //var tr = document.createElement('tr');
+                        var tr = $('<tr>')[0];
                         if (i % 2 && p.striped) tr.className = 'erow';
                         var entity = {};
                         if (row.id) {
@@ -367,29 +368,29 @@
 
                         //add cell
                         $('thead tr:first th', g.hDiv).each(function () {
-                            var td = document.createElement('td');
-                            var idx = $(this).attr('axis').substr(3);
+                            var td = $('<td>')[0];
+                            //var idx = $(this).attr('axis').substr(3);
                             td.align = this.align;
                             var n = $(this).attr('cln'); //add
                             //td.innerHTML = row.cell[idx];
                             td.innerHTML = entity[n];
                             $(tr).append(td);
-                            td = null;
+                            //td = null;
                         });
 
 
                         if ($('thead', this.gDiv).length < 1) //handle if grid has no headers
                         {
                             for (idx = 0; idx < cell.length; idx++) {
-                                var td = document.createElement('td');
+                                var td = $('<td>')[0];
                                 td.innerHTML = row.cell[idx];
                                 $(tr).append(td);
-                                td = null;
+                                //td = null;
                             }
                         }
 
                         $(tbody).append(tr);
-                        tr = null;
+                        //tr = null;
                     });
 
                 } else if (p.dataType == 'xml') {
@@ -635,41 +636,38 @@
             },
             addCellProp: function () {
 
-                $('tbody tr td', g.bDiv).each
-                    (
-                        function () {
-                            var tdDiv = document.createElement('div');
-                            var n = $('td', $(this).parent()).index(this);
-                            var pth = $('th:eq(' + n + ')', g.hDiv).get(0);
+                $('tbody tr td', g.bDiv).each(function () {
+                    var tdDiv = $('<div>')[0];
+                    var n = $('td', $(this).parent()).index(this);
+                    var pth = $('th:eq(' + n + ')', g.hDiv).get(0);
 
-                            if (pth != null) {
-                                if (p.sortname == $(pth).attr('abbr') && p.sortname) {
-                                    this.className = 'sorted';
-                                }
-                                $(tdDiv).css({ textAlign: pth.align, width: $('div:first', pth)[0].style.width });
-                                if (pth.hide) $(this).css('display', 'none');
-                            }
-
-                            if (p.nowrap == false) $(tdDiv).css('white-space', 'normal');
-
-                            if (this.innerHTML == '') this.innerHTML = '&nbsp;';
-
-                            //tdDiv.value = this.innerHTML; //store preprocess value
-                            tdDiv.innerHTML = this.innerHTML;
-
-                            var prnt = $(this).parent()[0];
-                            var pid = false;
-                            if (prnt.id) pid = prnt.id.substr(3);
-
-                            if (pth != null) {
-                                if (pth.process)
-                                //pth.process(tdDiv, pid);
-                                    pth.process(tdDiv, g.getRow(prnt.id));
-                            }
-                            $(this).empty().append(tdDiv).removeAttr('width'); //wrap content
-                            //add editable event here 'dblclick'
+                    if (pth != null) {
+                        if (p.sortname == $(pth).attr('abbr') && p.sortname) {
+                            this.className = 'sorted';
                         }
-                    );
+                        $(tdDiv).css({ textAlign: pth.align, width: $('div:first', pth)[0].style.width });
+                        if (pth.hide) $(this).css('display', 'none');
+                    }
+
+                    if (p.nowrap == false) $(tdDiv).css('white-space', 'normal');
+
+                    if (this.innerHTML == '') this.innerHTML = '&nbsp;';
+
+                    //tdDiv.value = this.innerHTML; //store preprocess value
+                    tdDiv.innerHTML = this.innerHTML;
+
+                    var prnt = $(this).parent()[0];
+                    var pid = false;
+                    if (prnt.id) pid = prnt.id.substr(3);
+
+                    if (pth != null) {
+                        if (pth.process)
+                        //pth.process(tdDiv, pid);
+                            pth.process(tdDiv, g.getRow(prnt.id));
+                    }
+                    $(this).empty().append(tdDiv).removeAttr('width'); //wrap content
+                    //add editable event here 'dblclick'
+                });
 
             },
             getCellDim: function (obj) // get cell prop for editable event
@@ -726,34 +724,35 @@
 
         //create model if any
         if (p.colModel) {
-            thead = document.createElement('thead');
-            tr = document.createElement('tr');
+            thead = $('<thead>')[0];
+            tr = $('<tr>')[0];
 
             for (i = 0; i < p.colModel.length; i++) {
                 var cm = p.colModel[i];
-                var th = document.createElement('th');
-
-                th.innerHTML = cm.display;
+                //var th = document.createElement('th');
+                var th = $('<th>').html(cm.display);
+                //th.innerHTML = cm.display;
 
                 if (cm.name && cm.sortable)
-                    $(th).attr('abbr', cm.name);
+                    th.attr('abbr', cm.name);
                 if (cm.name)
-                    $(th).attr('cln', cm.name.toLowerCase());
+                    th.attr('cln', cm.name.toLowerCase());
                 //th.idx = i;
 
-                $(th).attr('axis', 'col' + i);
+                th.attr('axis', 'col' + i);
 
                 if (cm.align)
-                    th.align = cm.align;
+                    th[0].align = cm.align;
 
-                $(th).attr('width', cm.width ? cm.width : '100px');
+                th.attr('width', cm.width ? cm.width : '100px');
 
                 if (cm.hide) {
-                    th.hide = true;
+                    th[0].hide = true;
+                    //th.hide = true;
                 }
 
                 if (cm.process) {
-                    th.process = cm.process;
+                    th[0].process = cm.process;
                 }
 
                 $(tr).append(th);
