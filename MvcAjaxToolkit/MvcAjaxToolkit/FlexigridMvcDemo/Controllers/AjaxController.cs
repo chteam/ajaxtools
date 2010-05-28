@@ -11,10 +11,6 @@ namespace FlexigridMvcDemo.Controllers
 {
     public class AjaxController : Controller
     {
-        //
-        // GET: /Ajax/
-
-
         public ActionResult Index(int? page, int? rp, string sortname, string sortorder)
         {
             var sql = "select * from UserInfo";
@@ -25,7 +21,6 @@ namespace FlexigridMvcDemo.Controllers
             var ds = new DataSet();
             ad.Fill(ds, "UserInfo");
             var pager = ds.Tables[0].AsEnumerable().Pager(page ?? 1, rp ?? 20);
-
             var json = pager.ToList().ToFlexigridObject(page ?? 1, pager.TotalCount,
 
                 c => c["id"], x => x.Add("id", t => t["id"])

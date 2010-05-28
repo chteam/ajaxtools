@@ -276,22 +276,18 @@
                 return visible;
             },
             switchCol: function (cdrag, cdrop) { //switch columns
-
                 $('tbody tr', t).each(function () {
                     if (cdrag > cdrop)
                         $('td:eq(' + cdrop + ')', this).before($('td:eq(' + cdrag + ')', this));
                     else
                         $('td:eq(' + cdrop + ')', this).after($('td:eq(' + cdrag + ')', this));
                 });
-
                 //switch order in nDiv
                 if (cdrag > cdrop)
                     $('tr:eq(' + cdrop + ')', this.nDiv).before($('tr:eq(' + cdrag + ')', this.nDiv));
                 else
                     $('tr:eq(' + cdrop + ')', this.nDiv).after($('tr:eq(' + cdrag + ')', this.nDiv));
-
                 if ($.browser.msie && $.browser.version < 7.0) $('tr:eq(' + cdrop + ') input', this.nDiv)[0].checked = true;
-
                 this.hDiv.scrollLeft = this.bDiv.scrollLeft;
             },
             scroll: function () {
@@ -299,23 +295,18 @@
                 this.rePosDrag();
             },
             addData: function (data) { //parse data
-
                 if (p.preProcess)
                     data = p.preProcess(data);
-
                 $('.pReload', this.pDiv).removeClass('loading');
                 this.loading = false;
-
                 if (!data) {
                     $('.pPageStat', this.pDiv).html(p.errormsg);
                     return false;
                 }
-
                 if (p.dataType == 'xml')
                     p.total = +$('rows total', data).text();
                 else
                     p.total = data.total;
-
                 if (p.total == 0) {
                     $('tr, a, td, div', t).unbind();
                     $(t).empty();
@@ -325,19 +316,15 @@
                     $('.pPageStat', this.pDiv).html(p.nomsg);
                     return false;
                 }
-
                 p.pages = Math.ceil(p.total / p.rp);
-
                 if (p.dataType == 'xml')
                     p.page = +$('rows page', data).text();
                 else
                     p.page = data.page;
-
                 this.buildpager();
                 p.rows = {};
                 //build new body
                 var tbody = $('<tbody>')[0];
-
                 if (p.dataType == 'json') {
                     var colns = this.getColNames();
                     $.each(data.rows, function (i, row) {
@@ -354,7 +341,6 @@
                             //
                             p.rows[row.id] = entity;
                         }
-
                         //add cell
                         $('thead tr:first th', g.hDiv).each(function () {
                             var td = $('<td>')[0];
@@ -366,8 +352,6 @@
                             $(tr).append(td);
                             //td = null;
                         });
-
-
                         if ($('thead', this.gDiv).length < 1) //handle if grid has no headers
                         {
                             for (idx = 0; idx < cell.length; idx++) {
@@ -377,7 +361,6 @@
                                 //td = null;
                             }
                         }
-
                         $(tbody).append(tr);
                         //tr = null;
                     });
