@@ -7,9 +7,11 @@
 * and GPL (GPL-LICENSE.txt) licenses.
 *
 * $Date: 2008-07-14 00:09:43 +0800 (Tue, 14 Jul 2008) $
-* edit by zoujian http://chsword.cnblogs.com http://bbs.eice.com.cn/ue/list.aspx
 */
-
+/* Flexigrid for jQuery - Modified by ZouJian 20100528
+* change the json data to {page:,rp:,total:,rows:{...},keys:["id"...]},
+* add a keys
+*/
 (function ($) {
 
     $.addFlex = function (t, p) {
@@ -81,7 +83,6 @@
                     $('div:eq(' + n + ')', g.cDrag).css({ 'left': cdpos + 'px' }).show();
                     cdleft = cdpos;
                 });
-
             },
             fixHeight: function (newH) {
                 newH = false;
@@ -90,9 +91,7 @@
                 $('div', this.cDrag).each(function () {
                     $(this).height(newH + hdHeight);
                 });
-
                 var nd = parseInt($(g.nDiv).height());
-
                 if (nd > newH)
                     $(g.nDiv).height(newH).width(200);
                 else
@@ -106,7 +105,6 @@
 
             },
             dragStart: function (dragtype, e, obj) { //default drag function start
-
                 if (dragtype == 'colresize' && p.colresize) //column resize
                 {
                     $(g.nDiv).hide();
@@ -118,8 +116,7 @@
 
                     this.colresize = { startX: e.pageX, ol: parseInt(obj.style.left), ow: ow, n: n };
                     $('body').css('cursor', 'col-resize');
-                }
-                else if (dragtype == 'vresize') //table resize
+                } else if (dragtype == 'vresize') //table resize
                 {
                     var hgo = false;
                     $('body').css('cursor', 'row-resize');
@@ -128,10 +125,7 @@
                         $('body').css('cursor', 'col-resize');
                     }
                     this.vresize = { h: p.height, sy: e.pageY, w: p.width, sx: e.pageX, hgo: hgo };
-                }
-
-                else if (dragtype == 'colMove' && p.colMove) //column header drag
-                {
+                } else if (dragtype == 'colMove' && p.colMove) {//column header drag
                     $(g.nDiv).hide();
                     $(g.nBtn).hide();
                     this.hset = $(this.hDiv).offset();
@@ -149,14 +143,10 @@
                     $(this.colCopy).css({ position: 'absolute', float: 'left', display: 'none', textAlign: obj.align });
                     $('body').append(this.colCopy);
                     $(this.cDrag).hide();
-
                 }
-
                 $('body').noSelect();
-
             },
             dragMove: function (e) {
-
                 if (this.colresize) //column resize
                 {
                     var n = this.colresize.n;
@@ -168,8 +158,7 @@
                         this.colresize.nw = nw;
                     }
                 }
-                else if (this.vresize) //table resize
-                {
+                else if (this.vresize) { //table resize
                     var v = this.vresize;
                     var y = e.pageY;
                     var diff = y - v.sy;
@@ -1207,8 +1196,7 @@
         // add date edit layer
         $(g.iDiv)
         .addClass('iDiv')
-        .css({ display: 'none' })
-        ;
+        .css({ display: 'none' });
         $(g.bDiv).append(g.iDiv);
 
         // add flexigrid events
@@ -1216,17 +1204,13 @@
         .hover(function () {
             $(g.nDiv).hide();
             $(g.nBtn).hide();
-        }, function () { if (g.multisel) g.multisel = false; })
-        ;
+        }, function () { if (g.multisel) g.multisel = false; });
         $(g.gDiv)
         .hover(function () { }, function () {
             $(g.nDiv).hide();
             $(g.nBtn).hide();
-        })
-        ;
-
+        });
         //add document events
-
         $(document)
          .mousemove(function (e) { g.dragMove(e) })
           .mouseup(function (e) { g.dragEnd() })
@@ -1314,7 +1298,6 @@
             prevent = p;
 
         if (prevent) {
-
             return this.each(function () {
                 if ($.browser.msie || $.browser.safari) $(this).bind('selectstart', function () { return false; });
                 else if ($.browser.mozilla) {
@@ -1332,11 +1315,7 @@
                 else $(this).removeAttr('unselectable', 'on');
             });
         }
-
     }; //end noSelect
-
-
-
 })(jQuery);
 
 (function ($) {
