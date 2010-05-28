@@ -74,6 +74,7 @@ namespace MvcAjaxToolkit.Flexigrid.Models
                 }
                 _rows.Add(new Entity(id, cells));
             }
+            _keys = propertyInfos.Select(c=>c.Name).ToList();
         }
         #endregion
         public int page
