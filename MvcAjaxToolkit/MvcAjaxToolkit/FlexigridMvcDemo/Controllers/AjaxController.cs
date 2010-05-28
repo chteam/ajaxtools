@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using FlexigridMvcDemo.Models;
 using MvcAjaxToolkit;
 using MvcAjaxToolkit.Pager;
+using MvcAjaxToolkit.Flexigrid.Models;
 
 namespace FlexigridMvcDemo.Controllers
 {
@@ -44,6 +45,24 @@ namespace FlexigridMvcDemo.Controllers
                          .Add(c => c.Name)
                          .Add(c => c.Age)
                          .Add(c => 1));
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetEntity2(int? page, int? rp, string sortname, string sortorder)
+        {
+            PagedList<UserInfo> json;
+            using (var t1 = new TEST1Entities())
+            {
+                var list1 = t1.UserInfo.OrderBy(c => c.Id);
+                var list = list1.Pager(page ?? 1, rp ?? 10);
+                json = list;
+            }
+            var data = json.ToFlexigridObject();
+                //json.ToFlexigridObject(c => c.Id,
+                //x => x.Add(c => c.Id)
+                //         .Add(c => c.Email)
+                //         .Add(c => c.Name)
+                //         .Add(c => c.Age)
+                //         .Add(c => 1));
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Remove(int id)
