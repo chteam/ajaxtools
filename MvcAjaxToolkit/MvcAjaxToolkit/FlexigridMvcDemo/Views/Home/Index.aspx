@@ -10,4 +10,12 @@
  
 
 </script>
+
+<%
+var a1=new[]{1,2,3};
+var a2 = new[] { 2, 3, 4, 5 };
+var j=a1.Intersect(a2);
+    
+ %>
+
 </asp:Content>
