@@ -7,7 +7,6 @@ namespace FlexigridMvcDemo.Controllers
     {
         public ActionResult Index()
         {
-
             return View();
         }
 
