@@ -13,7 +13,6 @@
 * add a keys
 */
 (function ($) {
-
     $.addFlex = function (t, p) {
         if (t.grid) return false; //return if already exist	
         // apply default properties
@@ -480,37 +479,10 @@
 
                 } else {
                     p.pages = Math.ceil(p.total / p.rp);
-                    var page = $(p.pager);
-                    if (page.length == 0) return;
-                    page.html(p.page + "/" + p.pages);
-                    var breakspan = '<span class="break">...</span>';
-                    var getPage = function (pg, t) {
-                        return $("<a></a>").attr('href', 'javascript:void(0)').click(function () {
-                            p.newp = pg;
-                            g.populate();
-                        }).text(t);
-                    };
-                    if (p.page > 1) {
-                        if (p.page - 2 > 1) {
-                            page.append(getPage(1, '< <')).append(breakspan);
-                        }
-                        page.append(getPage(p.page - 1, "< \u4e0a\u4e00\u9875"));
-                    }
-                    for (var i = 2; i <= 6; i++) {
-                        if ((p.page + i - 4) >= 1 && (p.page + i - 4) <= p.pages) {
-                            if (4 == i) {
-                                page.append($('<span class="this-page"></span>').text(p.page));
-                            } else {
-                                page.append(getPage(p.page + i - 4, p.page + i - 4));
-                            }
-                        }
-                    }
-                    if (p.page < p.pages) {
-                        page.append(getPage(1 + p.page, "\u4e0b\u4e00\u9875 >"));
-                        if (p.page + 2 < p.pages) {
-                            page.append(breakspan).append(getPage(p.pages, "> >"));
-                        }
-                    }
+                    $(p.pager).pager(p, function (pg) {
+                        p.newp = pg;
+                        g.populate();
+                    });
                 }
             },
             populate: function () { //get latest data
