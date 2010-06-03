@@ -1,4 +1,8 @@
-﻿(function ($) {
+﻿/*
+zoujian 
+8189E6B8-FBE4-4F01-8F9F-5687C0EA9F59
+*/
+(function ($) {
     $.fn.pager = function (p, handler) {
         var page = $(this);
         if (page.length == 0) return;
@@ -47,4 +51,5 @@ $('.page').pager({page:1,total:1000,rp:10},function(r){
 .page a:hover{border:solid 1px #d8dfea; color:#fff; background:#3B5999; text-decoration:none;}
 .page .pageCount{display:block; color:#808080; text-align:center;}
 .page select{float:left;}
+
 */
