@@ -479,10 +479,11 @@
 
                 } else {
                     p.pages = Math.ceil(p.total / p.rp);
-                    $(p.pager).pager(p, function (pg) {
-                        p.newp = pg;
-                        g.populate();
-                    });
+                    if ($.fn.pager)
+                        $(p.pager).pager(p, function (pg) {
+                            p.newp = pg;
+                            g.populate();
+                        });
                 }
             },
             populate: function () { //get latest data
